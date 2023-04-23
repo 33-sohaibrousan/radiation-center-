@@ -1,0 +1,101 @@
+﻿@model IEnumerable<Masterpies.Models.Device>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+
+}
+<style>
+    .scrollable {
+        height: 100px; 
+        overflow: auto;
+    }
+</style>
+
+<h2>Index</h2>
+
+
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.DeviceName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Devicebackground)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DeviceImg2)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DeviceImg3)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.step1)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.step2)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.step3)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.DeviceName)
+            </td>
+            <td>
+                <div class="@(item.step1.Length > 100 ? "scrollable" : "")">
+
+                    @Html.DisplayFor(modelItem => item.Description)
+                </div>
+            </td>
+            <td>
+                <img src="~/Content/@item.Devicebackground" width="100px" height="100px" />
+            </td>
+            <td>
+                <img src="~/Content/@item.DeviceImg2" width="100px" height="100px" />
+
+            </td>
+            <td>
+                <img src="~/Content/@item.DeviceImg3" width="100px" height="100px" />
+            </td>
+            <td>
+                <div class="@(item.step1.Length > 100 ? "scrollable" : "")">
+                    @Html.DisplayFor(modelItem => item.step1)
+                </div>
+            </td>
+            <td>
+                <div class="@(item.step2.Length > 100 ? "scrollable" : "")">
+
+                    @Html.DisplayFor(modelItem => item.step2)
+                  </div>  
+            </td>
+            <td>
+                <div class="@(item.step3.Length > 100 ? "scrollable" : "")">
+
+                    @Html.DisplayFor(modelItem => item.step3)
+                </div>
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Duration)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.DeviceID }) |
+                @Html.ActionLink("Details", "Details", new { id = item.DeviceID }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.DeviceID })
+            </td>
+        </tr>
+    }
+
+</table>

@@ -1,0 +1,88 @@
+﻿@model Masterpies.Models.Device
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Device</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.DeviceName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DeviceName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Devicebackground)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Devicebackground)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DeviceImg2)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DeviceImg2)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DeviceImg3)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DeviceImg3)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.step1)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.step1)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.step2)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.step2)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.step3)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.step3)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>
