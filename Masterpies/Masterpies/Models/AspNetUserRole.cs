@@ -17,6 +17,7 @@ namespace Masterpies.Models
         public string UserId { get; set; }
         public string RoleId { get; set; }
         public string Email { get; set; }
+        public string notes { get; set; }
     
         public virtual AspNetRole AspNetRole { get; set; }
         public virtual AspNetUser AspNetUser { get; set; }

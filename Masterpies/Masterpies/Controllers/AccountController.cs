@@ -78,20 +78,31 @@ namespace Masterpies.Controllers
             // This doesn't count login failures towards account lockout
             // To enable password failures to trigger account lockout, change to shouldLockout: true
             var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: false);
+            var user = await UserManager.FindByEmailAsync(model.Email);
+            Session["userid"] = db.AspNetUsers.Where(x => x.Email == model.Email).Select(x => x.Id).FirstOrDefault();
+
             switch (result)
             {
                 case SignInStatus.Success:
 
-                    Session["userid"] = db.AspNetUsers.Where(x => x.Email == model.Email).Select(x => x.Id).FirstOrDefault();
-                    if (Session["xray"] != null)
+
+
+
+                    if (user != null && await UserManager.IsInRoleAsync(user.Id, "Users"))
                     {
-                        return RedirectToAction("XRay", "Devices", new { id = Session["device"] });
+                        if (Session["xray"] != null && Session["userid"] != null)
+                        {
+                            //return RedirectToAction("checkout", "DoctorsInfo");
+
+                            return RedirectToAction("checkout", "Appointments", new { id = TempData["id"] });
+                        }
+                        else
+                        {
+                            return RedirectToAction("Index", "Home");
+                        }
                     }
-                    //return RedirectToLocal(returnUrl);
                     return RedirectToAction("Index", "Home");
                 case SignInStatus.LockedOut:
-                    return View("Lockout");
-                case SignInStatus.RequiresVerification:
                     return RedirectToAction("SendCode", new { ReturnUrl = returnUrl, RememberMe = model.RememberMe });
                 case SignInStatus.Failure:
                 default:
@@ -156,7 +167,7 @@ namespace Masterpies.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Register(RegisterViewModel model,string userName ,int Age)
+        public async Task<ActionResult> Register(RegisterViewModel model,string userName ,int Age, string PhoneNumber)
         {
             MasterPieseEntities2 db = new MasterPieseEntities2();
             if (ModelState.IsValid)
@@ -169,8 +180,10 @@ namespace Masterpies.Controllers
                     user1.aspuserid = user.Id;
                     user1.userName= userName;   
                     user1.Age= Age;
-                    
-                 db.Users.Add(user1);
+                    user1.PhoneNumber = PhoneNumber;
+
+
+                    db.Users.Add(user1);
                  db.SaveChanges();
                     var newuser = await UserManager.FindByNameAsync(model.Email);
                     if(newuser != null)

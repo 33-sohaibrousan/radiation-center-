@@ -4957,6 +4957,7 @@
     <Content Include="Views\AdminAppointments\RejectedAppointment.cshtml" />
     <Content Include="Views\Users\_profileappending.cshtml" />
     <Content Include="Views\Appointments\checkout.cshtml" />
+    <Content Include="Views\Shared\_Layoutpartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -23,8 +23,12 @@ namespace Masterpies.Controllers
         public ActionResult Requsts()
         {
             {
-                var apprequest = db.Appointments.Where(e => e.IsAccepted == null).Include(s => s.Device).Include(a => a.TimeSlot);
-           
+                //var apprequest = db.Appointments.Where(e => e.IsAccepted == null).Include(s => s.Device).Include(a => a.TimeSlot);
+                var apprequest = db.Appointments.Where(e => e.IsAccepted == null)
+         .OrderByDescending(a => a.AppointmentID    )
+         .Include(s => s.Device)
+         .Include(a => a.TimeSlot);
+
                 return View(apprequest.ToList());
             }
         }

@@ -19,6 +19,7 @@ namespace Masterpies.Models
         public Nullable<int> Age { get; set; }
         public Nullable<bool> Gender { get; set; }
         public string aspuserid { get; set; }
+        public string PhoneNumber { get; set; }
     
         public virtual AspNetUser AspNetUser { get; set; }
     }

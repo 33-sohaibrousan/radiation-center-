@@ -28,27 +28,39 @@ namespace Masterpies.Controllers
         }
         public ActionResult profile1()
         {
+            // Get the current user's ASP.NET Identity ID
             var login = User.Identity.GetUserId();
-            int idss = db.Users.FirstOrDefault(u => u.aspuserid == login).iduser;
 
-            var users = db.Users.Include(u => u.AspNetUser).Where(i=>i.iduser==idss);
-            return View(users.ToList());
+            // Retrieve the user's information based on their ASP.NET Identity ID
+            var user = db.Users.Include(u => u.AspNetUser).FirstOrDefault(u => u.aspuserid == login);
+
+            if (user == null)
+            {
+                return HttpNotFound();
+            }
+
+            // Pass a collection of users to the view
+            var users = db.Users.Include(u => u.AspNetUser).Where(u => u.aspuserid == login).ToList();
+
+            // Pass the user's email to the view
+            ViewBag.UserEmail = user.AspNetUser.Email;
+
+            return View(users);
         }
+
 
         public PartialViewResult _profileapp(int? id)
         {
             var login = User.Identity.GetUserId();
-            //var user3 = db.Users.Where(a => a.iduser==);
-            var appointments = db.Appointments.Where(a => a.aspuserid==login).Include(a => a.Device).Include(a=>a.Timeslotsid);
+            var appointments = db.Appointments.Where(a => a.aspuserid == login).Include(a => a.Device);
             return PartialView(appointments.ToList());
         }
-        //public PartialViewResult _profileappending()
-        //{
-        //    var login = User.Identity.GetUserId();
-        //    var appointments = db.Appointments.Where(a => a.aspuserid == login).Include(a => a.Device);
-        //    return PartialView(appointments.ToList());
-        //}
-
+        public PartialViewResult _profileappending()
+        {
+            var login = User.Identity.GetUserId();
+            var appointments = db.Appointments.Where(a => a.aspuserid == login && a.IsAccepted == null).Include(a => a.Device);
+            return PartialView(appointments.ToList());
+        }
         // GET: Users/Details/5
         public ActionResult Details(int? id)
         {var user1=db.Users.Where(x=>x.iduser==id);

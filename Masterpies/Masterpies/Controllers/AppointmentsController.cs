@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using Masterpies.Models;
+using Microsoft.AspNet.Identity;
 
 namespace Masterpies.Controllers
 {
@@ -22,10 +23,62 @@ namespace Masterpies.Controllers
             return View(appointments.ToList());
         }
 
-        public ActionResult checkout()
+        public ActionResult checkout(int? id)
         {
-            //var appointments = db.Appointments.Include(a => a.AspNetUser).Include(a => a.Device).Include(a => a.TimeSlot);
-            return View();
+            var devicename = db.Devices.FirstOrDefault(x => x.DeviceID == id);
+            ViewBag.Devicename = devicename.DeviceName;
+            ViewBag.DeviceId = devicename.DeviceID;
+            Session["xray"] = "welcome";
+            TempData["id"] = id;
+            var AspNetUsers = db.AspNetUsers.ToList();
+            var Devices = db.Devices.ToList();
+            var appoiment = db.Appointments.ToList();
+
+            return View(Tuple.Create(ASpuser, Device, appoiment));
+        }
+        [Authorize]
+        public ActionResult ConfirmBooking(int id, [Bind(Include = "AppointmentID,FirstName,LastName,patientAge,city,DeviceID, AppointmentDate,aspuserid,StartTime,EndTime,IsAccepted,Timeslotsid")] Appointment appoint, string card_name)
+        {
+            var userId = User.Identity.GetUserId();
+
+            appoint.FirstName = TempData["FirstName"].ToString();
+            appoint.LastName = TempData["LastName"].ToString();
+            appoint.city = TempData["city"].ToString();
+            appoint.StartTime = TempData["time"].ToString();
+            appoint.patientAge = Convert.ToInt32(TempData["patientAge"]);
+            appoint.DeviceID = id;
+            appoint.aspuserid = userId;
+            appoint.AppointmentDate = Convert.ToDateTime(TempData["AppointmentDate1"]).Date;
+            if (TempData["patientgender"] == "True")
+            {
+                appoint.patientgender = true;
+
+            }
+            else
+            {
+                appoint.patientgender = false;
+            }
+
+
+
+
+
+            using (var db = new MasterPieseEntities2())
+            {
+                db.Appointments.Add(appoint);
+
+
+
+                TempData["swal_message"] = $"Dear- Your appointment has been confirmed. We look forward to seeing you soon. In the meantime, feel free to explore our website and find ways to bring more peace into your life.";
+
+                ViewBag.title = "success";
+                ViewBag.icon = "success";
+                ViewBag.redirectUrl = Url.Action("successfullyBooking", new { id = id });
+
+                db.SaveChanges();
+            }
+            Session["xray"] = null;
+            return View("checkout");
         }
 
 

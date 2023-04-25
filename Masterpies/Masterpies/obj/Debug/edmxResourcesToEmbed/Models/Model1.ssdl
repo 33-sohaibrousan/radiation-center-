@@ -23,8 +23,8 @@
     <Property Name="DeviceID" Type="int" />
     <Property Name="AppointmentDate" Type="date" />
     <Property Name="aspuserid" Type="nvarchar" MaxLength="128" />
-    <Property Name="StartTime" Type="time" Precision="0" />
-    <Property Name="EndTime" Type="varchar" MaxLength="50" />
+    <Property Name="StartTime" Type="varchar(max)" />
+    <Property Name="EndTime" Type="varchar(max)" />
     <Property Name="IsAccepted" Type="bit" />
     <Property Name="Timeslotsid" Type="int" />
   </EntityType>
@@ -62,6 +62,7 @@
     <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
     <Property Name="RoleId" Type="nvarchar" MaxLength="128" Nullable="false" />
     <Property Name="Email" Type="varchar" MaxLength="50" />
+    <Property Name="notes" Type="varchar(max)" />
   </EntityType>
   <EntityType Name="AspNetUsers">
     <Key>
@@ -151,6 +152,7 @@
     <Property Name="Age" Type="int" />
     <Property Name="Gender" Type="bit" />
     <Property Name="aspuserid" Type="nvarchar" MaxLength="128" />
+    <Property Name="PhoneNumber" Type="varchar" MaxLength="50" />
   </EntityType>
   <Association Name="FK__PatientRe__Appoi__68487DD7">
     <End Role="Appointments" Type="Self.Appointments" Multiplicity="0..1" />

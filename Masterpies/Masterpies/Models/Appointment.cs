@@ -29,7 +29,7 @@ namespace Masterpies.Models
         public Nullable<int> DeviceID { get; set; }
         public Nullable<System.DateTime> AppointmentDate { get; set; }
         public string aspuserid { get; set; }
-        public Nullable<System.TimeSpan> StartTime { get; set; }
+        public string StartTime { get; set; }
         public string EndTime { get; set; }
         public Nullable<bool> IsAccepted { get; set; }
         public Nullable<int> Timeslotsid { get; set; }

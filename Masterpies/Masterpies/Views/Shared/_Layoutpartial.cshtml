@@ -1,0 +1,47 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>@ViewBag.Title - Master edit</title>
+
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="Free HTML Templates" name="keywords">
+    <meta content="Free HTML Templates" name="description">
+
+    <link href="https://cdn.datatables.net/v/dt/dt-1.13.4/datatables.min.css" rel="stylesheet" />
+    <!-- Datatables -->
+    <link href="~/datatable/datatables.net-bs/css/dataTables.bootstrap.min.css" rel="stylesheet">
+    <link href="~/datatable/datatables.net-buttons-bs/css/buttons.bootstrap.min.css" rel="stylesheet">
+    <link href="~/datatable/datatables.net-fixedheader-bs/css/fixedHeader.bootstrap.min.css" rel="stylesheet">
+    <link href="~/datatable/datatables.net-responsive-bs/css/responsive.bootstrap.min.css" rel="stylesheet">
+    <link href="~/datatable/datatables.net-scroller-bs/css/scroller.bootstrap.min.css" rel="stylesheet">
+
+</head>
+
+<body>
+
+    <!-- Navbar End -->
+    @RenderBody()
+    <script>
+        $(document).ready(function () {
+            $('#example').DataTable();
+        });
+    </script>
+    <script src="https://cdn.datatables.net/v/dt/dt-1.13.4/datatables.min.js"></script>
+    <script src="~/datatable/datatables.net/js/jquery.dataTables.min.js"></script>
+    <script src="~/datatable/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+    <script src="~/datatable/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
+    <script src="~/datatable/datatables.net-buttons-bs/js/buttons.bootstrap.min.js"></script>
+    <script src="~/datatable/datatables.net-buttons/js/buttons.flash.min.js"></script>
+    <script src="~/datatable/datatables.net-buttons/js/buttons.html5.min.js"></script>
+    <script src="~/datatable/datatables.net-buttons/js/buttons.print.min.js"></script>
+    <script src="~/datatable/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js"></script>
+    <script src="~/datatable/datatables.net-keytable/js/dataTables.keyTable.min.js"></script>
+    <script src="~/datatable/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
+    <script src="~/datatable/datatables.net-responsive-bs/js/responsive.bootstrap.js"></script>
+    <script src="~/datatable/datatables.net-scroller/js/dataTables.scroller.min.js"></script>
+
+</body>
+
+</html>

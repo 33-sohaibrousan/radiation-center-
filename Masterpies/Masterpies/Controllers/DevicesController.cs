@@ -32,14 +32,11 @@ namespace Masterpies.Controllers
 
             var ray = db.Devices.Where(x => x.DeviceID == id).ToList();
             ViewBag.flag = true;
-            DateTime appointdatee = Convert.ToDateTime(AppointmentDate);
-            DateTime currentDate = DateTime.Now;
-
 
             if (slot != null)
             {
 
-
+                DateTime appointdatee = Convert.ToDateTime(AppointmentDate);
 
                 var appointment = db.Appointments.Where(c => c.DeviceID == id && c.AppointmentDate == appointdatee.Date).ToList();
 
@@ -48,7 +45,7 @@ namespace Masterpies.Controllers
                 foreach (var item in appointment)
                 {
 
-                    ViewBag.slothour += item.StartTime?.ToString("hh\\:mm\\:ss") + ",";
+                    ViewBag.slothour += item.StartTime + ',';
 
 
 
@@ -68,26 +65,20 @@ namespace Masterpies.Controllers
                 TempData["FirstName"] = FirstName;
                 TempData["LastName"] = LastName;
                 TempData["AppointmentDate1"] = TempData["AppointmentDate"];
-
-                if (appointdatee < currentDate)
-                {
-
-                    // The appointment date is in the past
-                    ViewBag.ErrorMessage = "Please select a date in the future.";
-                    return View();
-                }
-                else
-                {
-                    // The appointment date is in the future or present
-                    // Perform booking logic
-                    return RedirectToAction("checkout", "Appointments", new { id = id });
-                }
+                Session["datecheckout"] = AppointmentDate;
 
 
 
+                return RedirectToAction("checkout", "Appointments", new { id = id });
 
             }
 
+
+
+
+
+
+            //var app=db.Appointments.Where(a=> a.DeviceID==id).ToList();
             return View(ray.ToList());
         }
 

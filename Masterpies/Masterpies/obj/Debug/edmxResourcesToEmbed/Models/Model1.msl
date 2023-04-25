@@ -60,6 +60,7 @@
     <EntitySetMapping Name="AspNetUserRoles">
       <EntityTypeMapping TypeName="MasterPieseModel.AspNetUserRole">
         <MappingFragment StoreEntitySet="AspNetUserRoles">
+          <ScalarProperty Name="notes" ColumnName="notes" />
           <ScalarProperty Name="Email" ColumnName="Email" />
           <ScalarProperty Name="RoleId" ColumnName="RoleId" />
           <ScalarProperty Name="UserId" ColumnName="UserId" />
@@ -81,6 +82,13 @@
           <ScalarProperty Name="EmailConfirmed" ColumnName="EmailConfirmed" />
           <ScalarProperty Name="Email" ColumnName="Email" />
           <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Blogs">
+      <EntityTypeMapping TypeName="MasterPieseModel.Blog">
+        <MappingFragment StoreEntitySet="Blog">
+          <ScalarProperty Name="id" ColumnName="id" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -134,24 +142,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="Users">
-      <EntityTypeMapping TypeName="MasterPieseModel.User">
-        <MappingFragment StoreEntitySet="Users">
-          <ScalarProperty Name="aspuserid" ColumnName="aspuserid" />
-          <ScalarProperty Name="Gender" ColumnName="Gender" />
-          <ScalarProperty Name="Age" ColumnName="Age" />
-          <ScalarProperty Name="userName" ColumnName="userName" />
-          <ScalarProperty Name="iduser" ColumnName="iduser" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="Blogs">
-      <EntityTypeMapping TypeName="MasterPieseModel.Blog">
-        <MappingFragment StoreEntitySet="Blog">
-          <ScalarProperty Name="id" ColumnName="id" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="TimeSlots">
       <EntityTypeMapping TypeName="MasterPieseModel.TimeSlot">
         <MappingFragment StoreEntitySet="TimeSlots">
@@ -160,6 +150,18 @@
           <ScalarProperty Name="EndTime" ColumnName="EndTime" />
           <ScalarProperty Name="StartTime" ColumnName="StartTime" />
           <ScalarProperty Name="TimeSlotID" ColumnName="TimeSlotID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Users">
+      <EntityTypeMapping TypeName="MasterPieseModel.User">
+        <MappingFragment StoreEntitySet="Users">
+          <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+          <ScalarProperty Name="aspuserid" ColumnName="aspuserid" />
+          <ScalarProperty Name="Gender" ColumnName="Gender" />
+          <ScalarProperty Name="Age" ColumnName="Age" />
+          <ScalarProperty Name="userName" ColumnName="userName" />
+          <ScalarProperty Name="iduser" ColumnName="iduser" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
