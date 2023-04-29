@@ -34,22 +34,23 @@ namespace Masterpies.Controllers
             var Devices = db.Devices.ToList();
             var appoiment = db.Appointments.ToList();
 
-            return View(Tuple.Create(ASpuser, Device, appoiment));
+            //return View(Tuple.Create(AspNetUsers, Devices, appoiment));
+            return View();
         }
         [Authorize]
         public ActionResult ConfirmBooking(int id, [Bind(Include = "AppointmentID,FirstName,LastName,patientAge,city,DeviceID, AppointmentDate,aspuserid,StartTime,EndTime,IsAccepted,Timeslotsid")] Appointment appoint, string card_name)
         {
             var userId = User.Identity.GetUserId();
 
-            appoint.FirstName = TempData["FirstName"].ToString();
-            appoint.LastName = TempData["LastName"].ToString();
-            appoint.city = TempData["city"].ToString();
-            appoint.StartTime = TempData["time"].ToString();
-            appoint.patientAge = Convert.ToInt32(TempData["patientAge"]);
+            appoint.FirstName = Session["FirstName"].ToString();
+            appoint.LastName = Session["LastName"].ToString();
+            appoint.city = Session["city"].ToString();
+            appoint.StartTime = Session["time"].ToString();
+            appoint.patientAge = Convert.ToInt32(Session["patientAge"]);
             appoint.DeviceID = id;
             appoint.aspuserid = userId;
-            appoint.AppointmentDate = Convert.ToDateTime(TempData["AppointmentDate1"]).Date;
-            if (TempData["patientgender"] == "True")
+            appoint.AppointmentDate = Convert.ToDateTime(Session["AppointmentDate1"]).Date;
+            if (Session["patientgender"] == "True")
             {
                 appoint.patientgender = true;
 

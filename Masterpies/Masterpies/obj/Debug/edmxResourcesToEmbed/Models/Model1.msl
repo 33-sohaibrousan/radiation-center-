@@ -106,6 +106,7 @@
     <EntitySetMapping Name="Devices">
       <EntityTypeMapping TypeName="MasterPieseModel.Device">
         <MappingFragment StoreEntitySet="Devices">
+          <ScalarProperty Name="Price" ColumnName="Price" />
           <ScalarProperty Name="Duration" ColumnName="Duration" />
           <ScalarProperty Name="step3" ColumnName="step3" />
           <ScalarProperty Name="step2" ColumnName="step2" />

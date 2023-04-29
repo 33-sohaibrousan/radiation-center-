@@ -51,22 +51,20 @@ namespace Masterpies.Controllers
 
                 }
                 ViewBag.flag = false;
-                TempData["AppointmentDate"] = AppointmentDate;
+                Session["AppointmentDate"] = AppointmentDate;
 
             }
 
             if (datatocheckout == "Appoint")
             {
-
-                TempData["time"] = SelectedTime;
-                TempData["city"] = city;
-                TempData["patientgender"] = patientgender;
-                TempData["patientAge"] = patientAge;
-                TempData["FirstName"] = FirstName;
-                TempData["LastName"] = LastName;
-                TempData["AppointmentDate1"] = TempData["AppointmentDate"];
-                Session["datecheckout"] = AppointmentDate;
-
+               Session["time"] = SelectedTime;
+               Session["city"] = city;
+               Session["patientgender"] = patientgender;
+               Session["patientAge"] = patientAge;
+               Session["FirstName"] = FirstName;
+               Session["LastName"] = LastName;
+               Session["AppointmentDate1"] = Session["AppointmentDate"];
+            
 
 
                 return RedirectToAction("checkout", "Appointments", new { id = id });
@@ -115,7 +113,7 @@ namespace Masterpies.Controllers
             Session["countarrow"] = count;
 
 
-            DateTime appointdatee = Convert.ToDateTime(TempData["AppointmentDate"]);
+            DateTime appointdatee = Convert.ToDateTime(Session["AppointmentDate"]);
 
             var appointment = db.Appointments.Where(c => c.DeviceID == id && c.AppointmentDate == appointdatee).ToList();
             string slothour = "";
@@ -149,7 +147,7 @@ namespace Masterpies.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "DeviceID,DeviceName,Description,Devicebackground,singledeviceid,DeviceImg2,DeviceImg3,step1,step2,step3,Duration")] Device device, HttpPostedFileBase Devicebackground, HttpPostedFileBase DeviceImg2, HttpPostedFileBase DeviceImg3)
+        public ActionResult Create([Bind(Include = "DeviceID,DeviceName,Description,Devicebackground,singledeviceid,DeviceImg2,DeviceImg3,step1,step2,step3,Duration,Price")] Device device, HttpPostedFileBase Devicebackground, HttpPostedFileBase DeviceImg2, HttpPostedFileBase DeviceImg3)
         {
             if (ModelState.IsValid)
             {
@@ -216,7 +214,7 @@ namespace Masterpies.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "DeviceID,DeviceName,Description,Devicebackground,singledeviceid,DeviceImg2,DeviceImg3,step1,step2,step3,Duration")] Device device, HttpPostedFileBase Devicebackground, HttpPostedFileBase DeviceImg2, HttpPostedFileBase DeviceImg3)
+        public ActionResult Edit([Bind(Include = "DeviceID,DeviceName,Description,Devicebackground,singledeviceid,DeviceImg2,DeviceImg3,step1,step2,step3,Duration,Price")] Device device, HttpPostedFileBase Devicebackground, HttpPostedFileBase DeviceImg2, HttpPostedFileBase DeviceImg3)
         {
             //device.DeviceImage = Session["img"].ToString();
             if (ModelState.IsValid)

@@ -49,13 +49,14 @@
                         <h1 class="display-4">What is a @item.DeviceName Exam?   </h1>
                     </div>
                     <p>
-                        X-ray is the most common form of medical imaging. An x-ray image is created when a small amount of radiation passes through the body to reach a digital imaging plate.
+                        @item.Description
+                        @*X-ray is the most common form of medical imaging. An x-ray image is created when a small amount of radiation passes through the body to reach a digital imaging plate.
 
                         When x-rays encounter different materials they are slowed or absorbed in varying amounts, creating an image. Dense material such as bone shows up as white while softer tissues show as varying shades of gray.
 
 
 
-                        X-Ray’s are walk-in. No appointment necessary.
+                        X-Ray’s are walk-in. No appointment necessary.*@
                     </p>
 
                 </div>
@@ -194,15 +195,15 @@
                     <div class="col-12 col-sm-6">
                         @if (ViewBag.flag == false)
                         {
-                            <input type="text" id="FirstName" name="FirstName" placeholder="First Name" class="form-control bg-light border-0" style="height: 55px;" required/>}
+                            <input type="text" id="FirstName" name="FirstName" placeholder="First Name" class="form-control bg-light border-0" style="height: 55px;" required />}
                     </div>
                     <div class="col-12 col-sm-6">
                         @if (ViewBag.flag == false)
-                        {<input type="text" id="LastName" name="LastName" placeholder="Last Name" class="form-control bg-light border-0" style="height: 55px;" required/>}
+                        {<input type="text" id="LastName" name="LastName" placeholder="Last Name" class="form-control bg-light border-0" style="height: 55px;" required />}
                     </div>
                     <div class="col-12 col-sm-6">
                         @if (ViewBag.flag == false)
-                        {<input type="number" id="patientAge" name="patientAge" placeholder="patient Age" class="form-control bg-light border-0" style="height: 55px;" required/>}
+                        {<input type="number" id="patientAge" name="patientAge" placeholder="patient Age" class="form-control bg-light border-0" style="height: 55px;" required />}
                     </div>
                     <div class="col-12 col-sm-6">
                         @if (ViewBag.flag == false)
@@ -243,7 +244,7 @@
 
 
                         <div class="col-12 col-sm-12">
-                            <div class="date" id="date" name="AppointmentDate" data-target-input="nearest" >
+                            <div class="date" id="date" name="AppointmentDate" data-target-input="nearest">
                                 <input type="date"
                                        @*class="form-control bg-light border-0 datetimepicker-input"*@ name="AppointmentDate"
                                        placeholder="Date" data-target="#date" style="height: 55px;"
@@ -319,7 +320,7 @@
 
                             }
 
-                            @Html.DropDownList("SelectedTime", times, "Select a time", new { @class = "form-select bg-light border-0", name = "time", id = "selectedTime" })
+                            @Html.DropDownList("SelectedTime", times, "Select a time", new { @class = "form-select bg-light border-0", name = "time", id = "selectedTime", required = "required" })
 
                         }
 

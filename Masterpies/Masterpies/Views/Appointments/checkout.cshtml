@@ -1,9 +1,7 @@
 ﻿@*@model Masterpies.Models.Appointment*@
 @model IEnumerable<Masterpies.Models.Appointment>
-@*@model Tuple<List<Masterpies.Models.Appointment>, 
-           List<Masterpies.Models.AspNetUsers>,
-    List<Masterpies.Models.appoiment>,
-    List<Masterpies.Models.Devices>>*@
+
+
 
 <style>
 
@@ -875,30 +873,39 @@
     <div class="details shadow">
         <div class="details__item">
 
-            <div class="item__image">
-                <img class="iphone" src="item.Device.DeviceImg2" alt="">
-            </div>
-
 
             <div class="item__details">
                 <div class="item__title">
                     <label for="DeviceID">@ViewBag.Devicename</label>
                 </div>
 
-
+                <div class="item__quantity">
+                    Quantity: 1
+                </div>
                 <div class="item__description">
                     <ul style=" list-style: none;font-size:20px; ">
-                        <li> <b>Patient Name :</b>@TempData["FirstName"] @TempData["LastName"] </li>
-                        <li><b>Age :</b>@TempData["patientAge"]   </li>
-                        <li><b>Gender :</b>@TempData["patientgender"]   </li>
-                        <li><b>City :</b>@TempData["city"]  </li>
-                        <li><b>Time :</b> @TempData["time"]</li>
-                        <li><b>Date :</b> @Session["datecheckout"]</li>
-
+                        <li> <b>Patient Name :</b>@Session["FirstName"] @Session["LastName"] </li>
+                        <li><b>Age :</b>@Session["patientAge"]   </li>
+                        <li><b>Gender :</b>@Session["patientgender"]   </li>
+                        <li><b>City :</b>@Session["city"]</li>
+                        <li><b>Time :</b> @Session["time"]</li>
+                        <li><b>Date :</b> @Session["AppointmentDate1"]</li>
                     </ul>
-
                 </div>
+                @*<script>
+                    // Save data to local storage
+                    window.addEventListener("beforeunload", function (e) {
+                        localStorage.setItem("itemDescription", document.querySelector(".item__description").innerHTML);
+                    });
 
+                    // Load saved data when page loads
+                    window.addEventListener("load", function (e) {
+                        var itemDescription = localStorage.getItem("itemDescription");
+                        if (itemDescription) {
+                            document.querySelector(".item__description").innerHTML = itemDescription;
+                        }
+                    });
+                </script>*@
             </div>
         </div>
 
@@ -915,15 +922,10 @@
                 <div class="payment__type payment__type--cc active">
                     <i class="icon icon-credit-card"></i>Credit Card
                 </div>
-                <div class="payment__type payment__type--paypal">
+                <div class="payment__type payment__type--paypal active">
                     <i class="icon icon-paypal"></i>Paypal
                 </div>
-                <div class="payment__type payment__type--paypal">
-                    <i class="icon icon-wallet"></i>SEPA
-                </div>
-                <div class="payment__type payment__type--paypal">
-                    <i class="icon icon-note"></i>Invoice
-                </div>
+            
             </div>
 
             <div class="payment__info">
@@ -1014,6 +1016,7 @@
                         </div>
                     </form>
                 </div>
+
                 <div class="payment__shipping">
                     <div class="payment__title">
                         <i class="icon icon-plane"></i> User Information
@@ -1030,6 +1033,53 @@
                     </div>
 
                 </div>
+                <div id="smart-button-container">
+                    <div style="text-align: center;">
+                        <div id="paypal-button-container"></div>
+                    </div>
+                </div>
+                <script src="https://www.paypal.com/sdk/js?client-id=AYOPFmJHKEp34Obn8Gp5EJhzo8qOotnJl2Y6lj3E72wh3UcV-V-gVaGPkM-bR-XvEfuvN5ZhSeOgZk6R&enable-funding=venmo&currency=USD"
+                        data-sdk-integration-source="button-factory"></script>
+                <script>
+                    function initPayPalButton() {
+                        paypal.Buttons({
+                            style: {
+                                shape: 'rect',
+                                color: 'gold',
+                                layout: 'vertical',
+                                label: 'paypal',
+
+                            },
+
+                            createOrder: function (data, actions) {
+                                return actions.order.create({
+                                    purchase_units: [{ "amount": { "currency_code": "USD", "value": 1 } }]
+                                });
+                            },
+
+                            onApprove: function (data, actions) {
+                                return actions.order.capture().then(function (orderData) {
+
+                                    // Full available details
+                                    console.log('Capture result', orderData, JSON.stringify(orderData, null, 2));
+
+                                    // Show a success message within this page, e.g.
+                                    const element = document.getElementById('paypal-button-container');
+                                    element.innerHTML = '';
+                                    element.innerHTML = '<h3>Thank you for your payment!</h3>';
+
+                                    // Or go to another URL:  actions.redirect('thank_you.html');
+
+                                });
+                            },
+
+                            onError: function (err) {
+                                console.log(err);
+                            }
+                        }).render('#paypal-button-container');
+                    }
+                    initPayPalButton();
+                </script>
             </div>
         </div>
     </div>

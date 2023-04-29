@@ -30,6 +30,7 @@ namespace Masterpies.Models
         public string step2 { get; set; }
         public string step3 { get; set; }
         public string Duration { get; set; }
+        public Nullable<int> Price { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Appointment> Appointments { get; set; }

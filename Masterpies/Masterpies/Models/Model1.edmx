@@ -116,6 +116,7 @@
           <Property Name="step2" Type="varchar(max)" />
           <Property Name="step3" Type="varchar(max)" />
           <Property Name="Duration" Type="varchar" MaxLength="50" />
+          <Property Name="Price" Type="int" />
         </EntityType>
         <EntityType Name="PatientReviews">
           <Key>
@@ -529,6 +530,7 @@
           <Property Name="step2" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="step3" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="Duration" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Price" Type="Int32" />
           <NavigationProperty Name="Appointments" Relationship="MasterPieseModel.FK_Appointments_Devices" FromRole="Device" ToRole="Appointment" />
         </EntityType>
         <EntityType Name="PatientReview">
@@ -816,6 +818,7 @@
           <EntitySetMapping Name="Devices">
             <EntityTypeMapping TypeName="MasterPieseModel.Device">
               <MappingFragment StoreEntitySet="Devices">
+                <ScalarProperty Name="Price" ColumnName="Price" />
                 <ScalarProperty Name="Duration" ColumnName="Duration" />
                 <ScalarProperty Name="step3" ColumnName="step3" />
                 <ScalarProperty Name="step2" ColumnName="step2" />

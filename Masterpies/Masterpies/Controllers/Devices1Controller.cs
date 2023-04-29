@@ -46,7 +46,7 @@ namespace Masterpies.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "DeviceID,DeviceName,Description,Devicebackground,DeviceImg2,DeviceImg3,step1,step2,step3,Duration")] Device device)
+        public ActionResult Create([Bind(Include = "DeviceID,DeviceName,Description,Devicebackground,DeviceImg2,DeviceImg3,step1,step2,step3,Duration,Price")] Device device)
         {
             if (ModelState.IsValid)
             {
@@ -78,7 +78,7 @@ namespace Masterpies.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "DeviceID,DeviceName,Description,Devicebackground,DeviceImg2,DeviceImg3,step1,step2,step3,Duration")] Device device)
+        public ActionResult Edit([Bind(Include = "DeviceID,DeviceName,Description,Devicebackground,DeviceImg2,DeviceImg3,step1,step2,step3,Duration,Price")] Device device)
         {
             if (ModelState.IsValid)
             {

@@ -45,6 +45,9 @@
         <th>
             @Html.DisplayNameFor(model => model.step3)
         </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Price)
+        </th>
         <th></th>
     </tr>
 
@@ -79,7 +82,7 @@
                 <div class="@(item.step2.Length > 100 ? "scrollable" : "")">
 
                     @Html.DisplayFor(modelItem => item.step2)
-                  </div>  
+                </div>
             </td>
             <td>
                 <div class="@(item.step3.Length > 100 ? "scrollable" : "")">
@@ -88,7 +91,7 @@
                 </div>
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Duration)
+                @Html.DisplayFor(modelItem => item.Price)
             </td>
             <td>
                 @Html.ActionLink("Edit", "Edit", new { id = item.DeviceID }) |

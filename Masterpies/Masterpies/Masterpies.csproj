@@ -4942,11 +4942,6 @@
     <Content Include="Views\Appointments1\Details.cshtml" />
     <Content Include="Views\Appointments1\Edit.cshtml" />
     <Content Include="Views\Appointments1\Index.cshtml" />
-    <Content Include="Views\Devices1\Create.cshtml" />
-    <Content Include="Views\Devices1\Delete.cshtml" />
-    <Content Include="Views\Devices1\Details.cshtml" />
-    <Content Include="Views\Devices1\Edit.cshtml" />
-    <Content Include="Views\Devices1\Index.cshtml" />
     <Content Include="Views\AdminAppointments\Create.cshtml" />
     <Content Include="Views\AdminAppointments\Delete.cshtml" />
     <Content Include="Views\AdminAppointments\Details.cshtml" />
@@ -4958,6 +4953,11 @@
     <Content Include="Views\Users\_profileappending.cshtml" />
     <Content Include="Views\Appointments\checkout.cshtml" />
     <Content Include="Views\Shared\_Layoutpartial.cshtml" />
+    <Content Include="Views\Devices1\Create.cshtml" />
+    <Content Include="Views\Devices1\Delete.cshtml" />
+    <Content Include="Views\Devices1\Details.cshtml" />
+    <Content Include="Views\Devices1\Edit.cshtml" />
+    <Content Include="Views\Devices1\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
