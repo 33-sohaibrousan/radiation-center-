@@ -129,6 +129,15 @@
           <Property Name="ReviewDate" Type="datetime" />
           <Property Name="Userid" Type="nvarchar" MaxLength="128" />
         </EntityType>
+        <EntityType Name="radiographer">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" />
+          <Property Name="imageemployee" Type="varchar" MaxLength="255" />
+          <Property Name="Job title" Type="varchar" MaxLength="50" />
+        </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
             <PropertyRef Name="diagram_id" />
@@ -300,6 +309,7 @@
           <EntitySet Name="Contact" EntityType="Self.Contact" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Devices" EntityType="Self.Devices" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PatientReviews" EntityType="Self.PatientReviews" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="radiographer" EntityType="Self.radiographer" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TimeSlots" EntityType="Self.TimeSlots" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
@@ -403,6 +413,7 @@
             <End Role="AspNetUser" EntitySet="AspNetUsers" />
             <End Role="User" EntitySet="Users" />
           </AssociationSet>
+          <EntitySet Name="radiographers" EntityType="MasterPieseModel.radiographer" />
         </EntityContainer>
         <EntityType Name="C__MigrationHistory">
           <Key>
@@ -707,6 +718,15 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="radiographer">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="imageemployee" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Job_title" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -875,6 +895,16 @@
                 <ScalarProperty Name="Age" ColumnName="Age" />
                 <ScalarProperty Name="userName" ColumnName="userName" />
                 <ScalarProperty Name="iduser" ColumnName="iduser" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="radiographers">
+            <EntityTypeMapping TypeName="MasterPieseModel.radiographer">
+              <MappingFragment StoreEntitySet="radiographer">
+                <ScalarProperty Name="Job_title" ColumnName="Job title" />
+                <ScalarProperty Name="imageemployee" ColumnName="imageemployee" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

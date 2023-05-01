@@ -166,5 +166,15 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="radiographers">
+      <EntityTypeMapping TypeName="MasterPieseModel.radiographer">
+        <MappingFragment StoreEntitySet="radiographer">
+          <ScalarProperty Name="Job_title" ColumnName="Job title" />
+          <ScalarProperty Name="imageemployee" ColumnName="imageemployee" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

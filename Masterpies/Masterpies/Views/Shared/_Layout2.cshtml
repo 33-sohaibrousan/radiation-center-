@@ -38,6 +38,11 @@
           rel="stylesheet" />
     <link rel="stylesheet"
           href="https://unicons.iconscout.com/release/v4.0.0/css/line.css" />
+    <!-- SweetAlert2 CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.0/dist/sweetalert2.min.css">
+
+
+
 </head>
 
 <body>
@@ -206,9 +211,11 @@
 
     <!-- Template Javascript -->
     <script src="~/js/main.js"></script>
+    <!-- SweetAlert2 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.0/dist/sweetalert2.min.js"></script>
     @RenderSection("scripts", required: false)
 
-    <script>
+    @*<script>
         $(document).ready(function () {
 
             var current_fs, next_fs, previous_fs; //fieldsets
@@ -276,7 +283,7 @@
             //    return false;
             //})
 
-        });
+        });*@
     </script>
 
 </body>

@@ -21,6 +21,13 @@ namespace Masterpies.Controllers
 
             return View(db.Devices.ToList());
         }
+        public ActionResult Search(string search)
+        {
+            
+            var x1 = db.Devices.Where(x => x.DeviceName.Contains(search)).ToList();
+            return View("Index",x1);
+        }
+
         public ActionResult XRay(int? id, string slot, string AppointmentDate, string datatocheckout, string SelectedTime, string FirstName, string LastName, string patientAge, string patientgender, string city)
         {
             var devicename = db.Devices.FirstOrDefault(x => x.DeviceID == id);
@@ -152,13 +159,7 @@ namespace Masterpies.Controllers
             if (ModelState.IsValid)
             {
 
-                if (Devicebackground != null)
-                {
-                    if (!Devicebackground.ContentType.ToLower().StartsWith("image/"))
-                    {
-                        ModelState.AddModelError("", "file uploaded is not an image");
-                        return View(Devicebackground);
-                    }
+               
                     string folderPath = Server.MapPath("~/Content/Images");
                     if (!Directory.Exists(folderPath))
                     {
@@ -178,17 +179,9 @@ namespace Masterpies.Controllers
                     device.Devicebackground = "../Content/Images/" + fileName;
                     device.DeviceImg2 = "../Content/Images/" + fileName2;
                     device.DeviceImg3 = "../Content/Images/" + fileName3;
-
-
-                }
-                else
-                {
-                    ModelState.AddModelError("", "Please upload an image.");
-                    return View(device);
-                }
-                db.Devices.Add(device);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                    db.Devices.Add(device);
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
             }
 
             return View(device);
@@ -220,13 +213,7 @@ namespace Masterpies.Controllers
             if (ModelState.IsValid)
             {
 
-                if (Devicebackground != null)
-                {
-                    if (!Devicebackground.ContentType.ToLower().StartsWith("image/"))
-                    {
-                        ModelState.AddModelError("", "file uploaded is not an image");
-                        return View(Devicebackground);
-                    }
+            
                     string folderPath = Server.MapPath("~/Content/Images");
                     if (!Directory.Exists(folderPath))
                     {
@@ -246,17 +233,9 @@ namespace Masterpies.Controllers
                     device.Devicebackground = "../Content/Images/" + fileName;
                     device.DeviceImg2 = "../Content/Images/" + fileName2;
                     device.DeviceImg3 = "../Content/Images/" + fileName3;
-
-
-                }
-                else
-                {
-                    ModelState.AddModelError("", "Please upload an image.");
-                    return View(device);
-                }
-                db.Entry(device).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                    db.Entry(device).State = EntityState.Modified;
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
             }
             return View(device);
         }

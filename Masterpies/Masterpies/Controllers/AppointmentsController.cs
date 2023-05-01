@@ -22,6 +22,7 @@ namespace Masterpies.Controllers
             var appointments = db.Appointments.Include(a => a.AspNetUser).Include(a => a.Device).Include(a => a.TimeSlot);
             return View(appointments.ToList());
         }
+        
 
         public ActionResult checkout(int? id)
         {

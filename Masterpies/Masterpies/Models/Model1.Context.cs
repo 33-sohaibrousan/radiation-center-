@@ -39,5 +39,6 @@ namespace Masterpies.Models
         public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
         public virtual DbSet<TimeSlot> TimeSlots { get; set; }
         public virtual DbSet<User> Users { get; set; }
+        public virtual DbSet<radiographer> radiographers { get; set; }
     }
 }

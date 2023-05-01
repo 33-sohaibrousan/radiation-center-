@@ -124,6 +124,15 @@
     <Property Name="ReviewDate" Type="datetime" />
     <Property Name="Userid" Type="nvarchar" MaxLength="128" />
   </EntityType>
+  <EntityType Name="radiographer">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="varchar" MaxLength="50" />
+    <Property Name="imageemployee" Type="varchar" MaxLength="255" />
+    <Property Name="Job title" Type="varchar" MaxLength="50" />
+  </EntityType>
   <EntityType Name="sysdiagrams">
     <Key>
       <PropertyRef Name="diagram_id" />
@@ -295,6 +304,7 @@
     <EntitySet Name="Contact" EntityType="Self.Contact" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Devices" EntityType="Self.Devices" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="PatientReviews" EntityType="Self.PatientReviews" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="radiographer" EntityType="Self.radiographer" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="TimeSlots" EntityType="Self.TimeSlots" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />

@@ -5,20 +5,20 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="afc0e661dbde4d44ac397e4c6635e3dc" Name="Diagram1">
-        <EntityTypeShape EntityType="MasterPieseModel.C__MigrationHistory" Width="1.5" PointX="0.75" PointY="0.75" />
-        <EntityTypeShape EntityType="MasterPieseModel.Appointment" Width="1.5" PointX="6" PointY="7.25" />
-        <EntityTypeShape EntityType="MasterPieseModel.AspNetRole" Width="1.5" PointX="0.75" PointY="4.625" />
-        <EntityTypeShape EntityType="MasterPieseModel.AspNetUserClaim" Width="1.5" PointX="3" PointY="13.5" />
-        <EntityTypeShape EntityType="MasterPieseModel.AspNetUserLogin" Width="1.5" PointX="3" PointY="19.375" />
-        <EntityTypeShape EntityType="MasterPieseModel.AspNetUserRole" Width="1.5" PointX="3" PointY="8.375" />
-        <EntityTypeShape EntityType="MasterPieseModel.AspNetUser" Width="1.5" PointX="0.75" PointY="7.125" />
-        <EntityTypeShape EntityType="MasterPieseModel.Blog" Width="1.5" PointX="5.75" PointY="0.75" />
-        <EntityTypeShape EntityType="MasterPieseModel.Contact" Width="1.5" PointX="5.75" PointY="2.75" />
-        <EntityTypeShape EntityType="MasterPieseModel.Device" Width="1.5" PointX="3.75" PointY="1.25" />
-        <EntityTypeShape EntityType="MasterPieseModel.PatientReview" Width="1.5" PointX="8.25" PointY="8.125" />
-        <EntityTypeShape EntityType="MasterPieseModel.sysdiagram" Width="1.5" PointX="7.75" PointY="0.75" />
-        <EntityTypeShape EntityType="MasterPieseModel.TimeSlot" Width="1.5" PointX="3.75" PointY="5.25" />
-        <EntityTypeShape EntityType="MasterPieseModel.User" Width="1.5" PointX="3" PointY="16.25" />
+        <EntityTypeShape EntityType="MasterPieseModel.C__MigrationHistory" Width="1.5" PointX="4.25" PointY="0.5" />
+        <EntityTypeShape EntityType="MasterPieseModel.Appointment" Width="1.5" PointX="9.5" PointY="7" />
+        <EntityTypeShape EntityType="MasterPieseModel.AspNetRole" Width="1.5" PointX="4.25" PointY="12.375" />
+        <EntityTypeShape EntityType="MasterPieseModel.AspNetUserClaim" Width="1.5" PointX="6.5" PointY="5.375" />
+        <EntityTypeShape EntityType="MasterPieseModel.AspNetUserLogin" Width="1.5" PointX="6.5" PointY="8.125" />
+        <EntityTypeShape EntityType="MasterPieseModel.AspNetUserRole" Width="1.5" PointX="6.5" PointY="11.125" />
+        <EntityTypeShape EntityType="MasterPieseModel.AspNetUser" Width="1.5" PointX="4.25" PointY="6.875" />
+        <EntityTypeShape EntityType="MasterPieseModel.Blog" Width="1.5" PointX="9.25" PointY="0.5" />
+        <EntityTypeShape EntityType="MasterPieseModel.Contact" Width="1.5" PointX="9.25" PointY="2.5" />
+        <EntityTypeShape EntityType="MasterPieseModel.Device" Width="1.5" PointX="7.25" PointY="1" />
+        <EntityTypeShape EntityType="MasterPieseModel.PatientReview" Width="1.5" PointX="11.75" PointY="7.875" />
+        <EntityTypeShape EntityType="MasterPieseModel.sysdiagram" Width="1.5" PointX="11.25" PointY="0.5" />
+        <EntityTypeShape EntityType="MasterPieseModel.TimeSlot" Width="1.5" PointX="7.25" PointY="14.125" />
+        <EntityTypeShape EntityType="MasterPieseModel.User" Width="1.5" PointX="6.5" PointY="18.625" />
         <AssociationConnector Association="MasterPieseModel.FK__PatientRe__Appoi__68487DD7" />
         <AssociationConnector Association="MasterPieseModel.FK_Appointments_AspNetUsers" />
         <AssociationConnector Association="MasterPieseModel.FK_Appointments_Devices" />
@@ -29,6 +29,7 @@
         <AssociationConnector Association="MasterPieseModel.FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId" />
         <AssociationConnector Association="MasterPieseModel.FK_PatientReviews_AspNetUsers" />
         <AssociationConnector Association="MasterPieseModel.FK_Users_AspNetUsers" />
+        <EntityTypeShape EntityType="MasterPieseModel.radiographer" Width="1.5" PointX="4.25" PointY="3" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
