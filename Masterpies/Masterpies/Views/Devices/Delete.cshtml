@@ -79,12 +79,64 @@
 
     </dl>
 
-    @using (Html.BeginForm()) {
+    @using (Html.BeginForm(null, null, FormMethod.Post, new { id = "myForm" }))
+    {
         @Html.AntiForgeryToken()
 
         <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
+            <input type="submit" value="Delete" onclick="preventDefault(event)" class="btn btn-default" /> |
             @Html.ActionLink("Back to List", "Index")
         </div>
+        <script>
+            function preventDefault(event) {
+                event.preventDefault();
+
+                // Get the form element
+                var form = document.getElementById("myForm");
+
+                // Create a FormData object to submit the form data
+                var formData = new FormData(form);
+
+                // Submit the form using an AJAX request
+                fetch(form.action, {
+                    method: 'POST',
+                    body: formData
+                })
+                    .then(response => {
+                        // Check if the response is successful (status 200)
+                        if (response.ok) {
+                            // Show the success SweetAlert after the action is complete
+                            Swal.fire({
+                                position: 'top-end',
+                                icon: 'success',
+                                title: 'Your work has been saved',
+                                showConfirmButton: false,
+                                timer: 1500
+                            });
+                        } else {
+                            // Handle server-side errors by showing an error SweetAlert
+                            Swal.fire({
+                                position: 'top-end',
+                                icon: 'error',
+                                title: 'An error occurred',
+                                text: 'Please try again later',
+                                showConfirmButton: true
+                            });
+                        }
+                    })
+                    .catch(error => {
+                        // Handle network errors by showing an error SweetAlert
+                        Swal.fire({
+                            position: 'top-end',
+                            icon: 'error',
+                            title: 'Network error',
+                            text: 'Please check your internet connection and try again',
+                            showConfirmButton: true
+                        });
+                    });
+            }
+        </script>
+
+
     }
 </div>

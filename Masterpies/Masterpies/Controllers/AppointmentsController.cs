@@ -22,7 +22,29 @@ namespace Masterpies.Controllers
             var appointments = db.Appointments.Include(a => a.AspNetUser).Include(a => a.Device).Include(a => a.TimeSlot);
             return View(appointments.ToList());
         }
-        
+        public ActionResult statistics()
+        {
+
+            int requst = db.Appointments.Count();
+            int acceptedCount = db.Appointments.Count(s => s.IsAccepted == true);
+            int reject = db.Appointments.Count(s => s.IsAccepted == false);
+            int user = db.Users.Count();
+            int device = db.Devices.Count();
+            int aspuser = db.AspNetUsers.Count();
+
+
+
+            ViewBag.requst = requst;
+            ViewBag.AcceptedCount = acceptedCount;
+            ViewBag.reject = reject;
+            ViewBag.user = user;
+            ViewBag.device = device;
+            ViewBag.aspuser = aspuser;
+
+
+
+            return View();
+        }
 
         public ActionResult checkout(int? id)
         {

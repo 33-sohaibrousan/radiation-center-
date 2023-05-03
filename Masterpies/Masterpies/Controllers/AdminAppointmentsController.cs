@@ -88,7 +88,7 @@ namespace Masterpies.Controllers
         {
             {
 
-                var acceptapp = db.Appointments.Where(s => s.IsAccepted == true).Include(s => s.Device).Include(a => a.TimeSlot);
+                var acceptapp = db.Appointments.Where(s => s.IsAccepted == true).Include(s => s.Device).Include(a => a.TimeSlot).OrderByDescending(a => a.AppointmentID);
                 return View(acceptapp.ToList());
             }
         }
@@ -96,7 +96,7 @@ namespace Masterpies.Controllers
         {
 
             
-                var rejectapp = db.Appointments.Where(s => s.IsAccepted == false).Include(s => s.Device).Include(a => a.TimeSlot);
+                var rejectapp = db.Appointments.Where(s => s.IsAccepted == false).Include(s => s.Device).Include(a => a.TimeSlot).OrderByDescending(a => a.AppointmentID);
                 return View(rejectapp.ToList());
             
         }

@@ -9,9 +9,12 @@
     <EntitySet Name="AspNetUserRoles" EntityType="MasterPieseModel.AspNetUserRole" />
     <EntitySet Name="AspNetUsers" EntityType="MasterPieseModel.AspNetUser" />
     <EntitySet Name="Blogs" EntityType="MasterPieseModel.Blog" />
+    <EntitySet Name="comments" EntityType="MasterPieseModel.comment" />
     <EntitySet Name="Contacts" EntityType="MasterPieseModel.Contact" />
     <EntitySet Name="Devices" EntityType="MasterPieseModel.Device" />
     <EntitySet Name="PatientReviews" EntityType="MasterPieseModel.PatientReview" />
+    <EntitySet Name="payments" EntityType="MasterPieseModel.payment" />
+    <EntitySet Name="radiographers" EntityType="MasterPieseModel.radiographer" />
     <EntitySet Name="sysdiagrams" EntityType="MasterPieseModel.sysdiagram" />
     <EntitySet Name="TimeSlots" EntityType="MasterPieseModel.TimeSlot" />
     <EntitySet Name="Users" EntityType="MasterPieseModel.User" />
@@ -47,6 +50,14 @@
       <End Role="AspNetUser" EntitySet="AspNetUsers" />
       <End Role="AspNetUserRole" EntitySet="AspNetUserRoles" />
     </AssociationSet>
+    <AssociationSet Name="FK_Blog_AspNetUsers" Association="MasterPieseModel.FK_Blog_AspNetUsers">
+      <End Role="AspNetUser" EntitySet="AspNetUsers" />
+      <End Role="Blog" EntitySet="Blogs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_comment_AspNetUsers" Association="MasterPieseModel.FK_comment_AspNetUsers">
+      <End Role="AspNetUser" EntitySet="AspNetUsers" />
+      <End Role="comment" EntitySet="comments" />
+    </AssociationSet>
     <AssociationSet Name="FK_PatientReviews_AspNetUsers" Association="MasterPieseModel.FK_PatientReviews_AspNetUsers">
       <End Role="AspNetUser" EntitySet="AspNetUsers" />
       <End Role="PatientReview" EntitySet="PatientReviews" />
@@ -55,7 +66,14 @@
       <End Role="AspNetUser" EntitySet="AspNetUsers" />
       <End Role="User" EntitySet="Users" />
     </AssociationSet>
-    <EntitySet Name="radiographers" EntityType="MasterPieseModel.radiographer" />
+    <AssociationSet Name="FK_comment_Blog" Association="MasterPieseModel.FK_comment_Blog">
+      <End Role="Blog" EntitySet="Blogs" />
+      <End Role="comment" EntitySet="comments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_comment_Users" Association="MasterPieseModel.FK_comment_Users">
+      <End Role="User" EntitySet="Users" />
+      <End Role="comment" EntitySet="comments" />
+    </AssociationSet>
   </EntityContainer>
   <EntityType Name="C__MigrationHistory">
     <Key>
@@ -150,6 +168,8 @@
     <NavigationProperty Name="AspNetUserClaims" Relationship="MasterPieseModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUser" ToRole="AspNetUserClaim" />
     <NavigationProperty Name="AspNetUserLogins" Relationship="MasterPieseModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUser" ToRole="AspNetUserLogin" />
     <NavigationProperty Name="AspNetUserRoles" Relationship="MasterPieseModel.FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId" FromRole="AspNetUser" ToRole="AspNetUserRole" />
+    <NavigationProperty Name="Blogs" Relationship="MasterPieseModel.FK_Blog_AspNetUsers" FromRole="AspNetUser" ToRole="Blog" />
+    <NavigationProperty Name="comments" Relationship="MasterPieseModel.FK_comment_AspNetUsers" FromRole="AspNetUser" ToRole="comment" />
     <NavigationProperty Name="PatientReviews" Relationship="MasterPieseModel.FK_PatientReviews_AspNetUsers" FromRole="AspNetUser" ToRole="PatientReview" />
     <NavigationProperty Name="Users" Relationship="MasterPieseModel.FK_Users_AspNetUsers" FromRole="AspNetUser" ToRole="User" />
   </EntityType>
@@ -158,6 +178,27 @@
       <PropertyRef Name="id" />
     </Key>
     <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="image" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="title" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="text" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="aspuser" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="AspNetUser" Relationship="MasterPieseModel.FK_Blog_AspNetUsers" FromRole="Blog" ToRole="AspNetUser" />
+    <NavigationProperty Name="comments" Relationship="MasterPieseModel.FK_comment_Blog" FromRole="Blog" ToRole="comment" />
+  </EntityType>
+  <EntityType Name="comment">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="comment1" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="aspuser" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="user_id" Type="Int32" />
+    <Property Name="id_blog" Type="Int32" />
+    <NavigationProperty Name="AspNetUser" Relationship="MasterPieseModel.FK_comment_AspNetUsers" FromRole="comment" ToRole="AspNetUser" />
+    <NavigationProperty Name="Blog" Relationship="MasterPieseModel.FK_comment_Blog" FromRole="comment" ToRole="Blog" />
+    <NavigationProperty Name="User" Relationship="MasterPieseModel.FK_comment_Users" FromRole="comment" ToRole="User" />
   </EntityType>
   <EntityType Name="Contact">
     <Key>
@@ -199,6 +240,23 @@
     <NavigationProperty Name="Appointment" Relationship="MasterPieseModel.FK__PatientRe__Appoi__68487DD7" FromRole="PatientReview" ToRole="Appointment" />
     <NavigationProperty Name="AspNetUser" Relationship="MasterPieseModel.FK_PatientReviews_AspNetUsers" FromRole="PatientReview" ToRole="AspNetUser" />
   </EntityType>
+  <EntityType Name="payment">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="username" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="aspuser" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+  </EntityType>
+  <EntityType Name="radiographer">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="imageemployee" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="Job_title" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
   <EntityType Name="sysdiagram">
     <Key>
       <PropertyRef Name="diagram_id" />
@@ -231,6 +289,7 @@
     <Property Name="aspuserid" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
     <Property Name="PhoneNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <NavigationProperty Name="AspNetUser" Relationship="MasterPieseModel.FK_Users_AspNetUsers" FromRole="User" ToRole="AspNetUser" />
+    <NavigationProperty Name="comments" Relationship="MasterPieseModel.FK_comment_Users" FromRole="User" ToRole="comment" />
   </EntityType>
   <Association Name="FK__PatientRe__Appoi__68487DD7">
     <End Type="MasterPieseModel.Appointment" Role="Appointment" Multiplicity="0..1" />
@@ -336,6 +395,30 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_Blog_AspNetUsers">
+    <End Type="MasterPieseModel.AspNetUser" Role="AspNetUser" Multiplicity="0..1" />
+    <End Type="MasterPieseModel.Blog" Role="Blog" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUser">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Blog">
+        <PropertyRef Name="aspuser" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_comment_AspNetUsers">
+    <End Type="MasterPieseModel.AspNetUser" Role="AspNetUser" Multiplicity="0..1" />
+    <End Type="MasterPieseModel.comment" Role="comment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUser">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="comment">
+        <PropertyRef Name="aspuser" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_PatientReviews_AspNetUsers">
     <End Type="MasterPieseModel.AspNetUser" Role="AspNetUser" Multiplicity="0..1" />
     <End Type="MasterPieseModel.PatientReview" Role="PatientReview" Multiplicity="*" />
@@ -360,13 +443,28 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <EntityType Name="radiographer">
-    <Key>
-      <PropertyRef Name="id" />
-    </Key>
-    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="imageemployee" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
-    <Property Name="Job_title" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-  </EntityType>
+  <Association Name="FK_comment_Blog">
+    <End Type="MasterPieseModel.Blog" Role="Blog" Multiplicity="0..1" />
+    <End Type="MasterPieseModel.comment" Role="comment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Blog">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="comment">
+        <PropertyRef Name="id_blog" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_comment_Users">
+    <End Type="MasterPieseModel.User" Role="User" Multiplicity="0..1" />
+    <End Type="MasterPieseModel.comment" Role="comment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="iduser" />
+      </Principal>
+      <Dependent Role="comment">
+        <PropertyRef Name="user_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
 </Schema>

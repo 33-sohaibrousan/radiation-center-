@@ -33,12 +33,14 @@ namespace Masterpies.Models
         public virtual DbSet<AspNetUserRole> AspNetUserRoles { get; set; }
         public virtual DbSet<AspNetUser> AspNetUsers { get; set; }
         public virtual DbSet<Blog> Blogs { get; set; }
+        public virtual DbSet<comment> comments { get; set; }
         public virtual DbSet<Contact> Contacts { get; set; }
         public virtual DbSet<Device> Devices { get; set; }
         public virtual DbSet<PatientReview> PatientReviews { get; set; }
+        public virtual DbSet<payment> payments { get; set; }
+        public virtual DbSet<radiographer> radiographers { get; set; }
         public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
         public virtual DbSet<TimeSlot> TimeSlots { get; set; }
         public virtual DbSet<User> Users { get; set; }
-        public virtual DbSet<radiographer> radiographers { get; set; }
     }
 }

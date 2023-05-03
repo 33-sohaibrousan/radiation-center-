@@ -88,6 +88,23 @@
     <EntitySetMapping Name="Blogs">
       <EntityTypeMapping TypeName="MasterPieseModel.Blog">
         <MappingFragment StoreEntitySet="Blog">
+          <ScalarProperty Name="aspuser" ColumnName="aspuser" />
+          <ScalarProperty Name="text" ColumnName="text" />
+          <ScalarProperty Name="title" ColumnName="title" />
+          <ScalarProperty Name="image" ColumnName="image" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="comments">
+      <EntityTypeMapping TypeName="MasterPieseModel.comment">
+        <MappingFragment StoreEntitySet="comment">
+          <ScalarProperty Name="id_blog" ColumnName="id_blog" />
+          <ScalarProperty Name="user_id" ColumnName="user_id" />
+          <ScalarProperty Name="aspuser" ColumnName="aspuser" />
+          <ScalarProperty Name="comment1" ColumnName="comment" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
           <ScalarProperty Name="id" ColumnName="id" />
         </MappingFragment>
       </EntityTypeMapping>
@@ -132,6 +149,25 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="payments">
+      <EntityTypeMapping TypeName="MasterPieseModel.payment">
+        <MappingFragment StoreEntitySet="payments">
+          <ScalarProperty Name="aspuser" ColumnName="aspuser" />
+          <ScalarProperty Name="username" ColumnName="username" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="radiographers">
+      <EntityTypeMapping TypeName="MasterPieseModel.radiographer">
+        <MappingFragment StoreEntitySet="radiographer">
+          <ScalarProperty Name="Job_title" ColumnName="Job title" />
+          <ScalarProperty Name="imageemployee" ColumnName="imageemployee" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="sysdiagrams">
       <EntityTypeMapping TypeName="MasterPieseModel.sysdiagram">
         <MappingFragment StoreEntitySet="sysdiagrams">
@@ -163,16 +199,6 @@
           <ScalarProperty Name="Age" ColumnName="Age" />
           <ScalarProperty Name="userName" ColumnName="userName" />
           <ScalarProperty Name="iduser" ColumnName="iduser" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="radiographers">
-      <EntityTypeMapping TypeName="MasterPieseModel.radiographer">
-        <MappingFragment StoreEntitySet="radiographer">
-          <ScalarProperty Name="Job_title" ColumnName="Job title" />
-          <ScalarProperty Name="imageemployee" ColumnName="imageemployee" />
-          <ScalarProperty Name="Name" ColumnName="Name" />
-          <ScalarProperty Name="id" ColumnName="id" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

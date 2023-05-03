@@ -130,26 +130,24 @@
             var dev = db.Devices.ToList();
 
 
-            <div class="row g-5">
-                @foreach (var item in dev)
-                {
-                    <div class="col-lg-4 col-md-6">
-                        <a href="@Url.Action("XRay", "Devices", new { id = item.DeviceID })">
+                <div class="row g-5">
+                    @foreach (var item in dev)
+                    {
+                        <div class="col-lg-4 col-md-6">
+                            <a href="@Url.Action("XRay", "Devices", new { id = item.DeviceID })">
+                                <div class="service-item bg-light rounded d-flex flex-column align-items-center justify-content-center text-center">
+                                    <div class=" mb-4">
+                                        <img src="~/Content/@item.DeviceImg2" width="150px" height="100px" />
+                                    </div>
+                                    <h4 class="mb-3">@item.DeviceName</h4>
+                                    <p class="m-0" style="overflow:hidden;">@item.Description</p>
+                                    <a class="btn" href="@Url.Action("XRay", "Devices", new { id = item.DeviceID })"><i class="fa fa-plus text-primary me-3"></i>Read More</a>
 
-                            <div class="service-item bg-light rounded d-flex flex-column align-items-center justify-content-center text-center">
-                                <div class=" mb-4">
-                                    <img src="~/Content/@item.DeviceImg2" width="150px" height="100px" />
+
                                 </div>
-                                <h4 class="mb-3">@item.DeviceName</h4>
-                                <p class="m-0">@item.Description</p>
-                                <i class="fa fa-plus text-primary me-3"></i>Read More
-                            </div>
-                        </a>
-
-                    </div>
-
-                }
-            </div>
+                        </div>
+                    }
+                </div>
 
         }
   

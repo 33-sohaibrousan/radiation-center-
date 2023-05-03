@@ -52,15 +52,20 @@ namespace Masterpies.Controllers
         public PartialViewResult _profileapp(int? id)
         {
             var login = User.Identity.GetUserId();
-            var appointments = db.Appointments.Where(a => a.aspuserid == login).Include(a => a.Device);
+            var appointments = db.Appointments.Where(a => a.aspuserid == login && a.IsAccepted!=null).Include(a => a.Device);
             return PartialView(appointments.ToList());
         }
+       
         public PartialViewResult _profileappending()
         {
             var login = User.Identity.GetUserId();
-            var appointments = db.Appointments.Where(a => a.aspuserid == login && a.IsAccepted == null).Include(a => a.Device);
+            var appointments = db.Appointments
+                                 .Where(a => a.aspuserid == login && a.IsAccepted == null)
+                                 .Include(a => a.Device)
+                                 .OrderByDescending(a => a.AppointmentDate);
             return PartialView(appointments.ToList());
         }
+
         // GET: Users/Details/5
         public ActionResult Details(int? id)
         {var user1=db.Users.Where(x=>x.iduser==id);

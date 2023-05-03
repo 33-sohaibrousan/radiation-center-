@@ -878,10 +878,10 @@
                 <div class="item__title">
                     <label for="DeviceID">@ViewBag.Devicename</label>
                 </div>
-
-                <div class="item__quantity">
-                    Quantity: 1
-                </div>
+                         <div class="item__quantity">
+                           
+                        </div>
+                   
                 <div class="item__description">
                     <ul style=" list-style: none;font-size:20px; ">
                         <li> <b>Patient Name :</b>@Session["FirstName"] @Session["LastName"] </li>
@@ -893,19 +893,19 @@
                     </ul>
                 </div>
                 @*<script>
-                    // Save data to local storage
-                    window.addEventListener("beforeunload", function (e) {
-                        localStorage.setItem("itemDescription", document.querySelector(".item__description").innerHTML);
-                    });
+            // Save data to local storage
+            window.addEventListener("beforeunload", function (e) {
+                localStorage.setItem("itemDescription", document.querySelector(".item__description").innerHTML);
+            });
 
-                    // Load saved data when page loads
-                    window.addEventListener("load", function (e) {
-                        var itemDescription = localStorage.getItem("itemDescription");
-                        if (itemDescription) {
-                            document.querySelector(".item__description").innerHTML = itemDescription;
-                        }
-                    });
-                </script>*@
+            // Load saved data when page loads
+            window.addEventListener("load", function (e) {
+                var itemDescription = localStorage.getItem("itemDescription");
+                if (itemDescription) {
+                    document.querySelector(".item__description").innerHTML = itemDescription;
+                }
+            });
+        </script>*@
             </div>
         </div>
 
