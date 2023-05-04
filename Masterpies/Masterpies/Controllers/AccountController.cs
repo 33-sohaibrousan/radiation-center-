@@ -1,4 +1,4 @@
-﻿using System;
+﻿    using System;
 using System.Globalization;
 using System.Linq;
 using System.Security.Claims;
@@ -86,7 +86,11 @@ namespace Masterpies.Controllers
                 case SignInStatus.Success:
 
 
-
+               if(await UserManager.IsInRoleAsync(user.Id, "Admin"))
+                    {
+                        return RedirectToAction("statistics", "AdminAppointments");
+                    
+                    }
 
                     if (user != null && await UserManager.IsInRoleAsync(user.Id, "Users"))
                     {
