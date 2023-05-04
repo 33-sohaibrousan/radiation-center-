@@ -45,13 +45,13 @@ namespace Masterpies.Controllers
 
             return View();
         }
+        [Authorize]
 
         public ActionResult checkout(int? id)
         {
             var devicename = db.Devices.FirstOrDefault(x => x.DeviceID == id);
-            ViewBag.Devicename = devicename.DeviceName;
-            ViewBag.DeviceId = devicename.DeviceID;
-            Session["xray"] = "welcome";
+            ViewBag.Devicename = TempData["devicename"];
+            ViewBag.DeviceId = TempData["DeviceId"];
             TempData["id"] = id;
             var AspNetUsers = db.AspNetUsers.ToList();
             var Devices = db.Devices.ToList();
@@ -60,7 +60,6 @@ namespace Masterpies.Controllers
             //return View(Tuple.Create(AspNetUsers, Devices, appoiment));
             return View();
         }
-        [Authorize]
         public ActionResult ConfirmBooking(int id, [Bind(Include = "AppointmentID,FirstName,LastName,patientAge,city,DeviceID, AppointmentDate,aspuserid,StartTime,EndTime,IsAccepted,Timeslotsid")] Appointment appoint, string card_name)
         {
             var userId = User.Identity.GetUserId();

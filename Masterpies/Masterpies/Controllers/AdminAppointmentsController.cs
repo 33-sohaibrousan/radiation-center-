@@ -11,6 +11,7 @@ using Masterpies.Models;
 
 namespace Masterpies.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class AdminAppointmentsController : Controller
     {
         private MasterPieseEntities2 db = new MasterPieseEntities2();
@@ -21,6 +22,7 @@ namespace Masterpies.Controllers
             var appointments = db.Appointments.Include(a => a.AspNetUser).Include(a => a.Device).Include(a => a.TimeSlot);
             return View(appointments.ToList());
         }
+        [Authorize(Roles = "Admin")]
         public ActionResult statistics()
         {
 
@@ -71,7 +73,7 @@ namespace Masterpies.Controllers
         }
 
 
-
+        [Authorize(Roles = "Admin")]
         public ActionResult Requsts()
         {
             
@@ -84,6 +86,7 @@ namespace Masterpies.Controllers
                 return View(apprequest.ToList());
             
         }
+        [Authorize(Roles = "Admin")]
         public ActionResult AcceptedAppointment()
         {
             {
@@ -92,6 +95,7 @@ namespace Masterpies.Controllers
                 return View(acceptapp.ToList());
             }
         }
+        [Authorize(Roles = "Admin")]
         public ActionResult RejectedAppointment()
         {
 

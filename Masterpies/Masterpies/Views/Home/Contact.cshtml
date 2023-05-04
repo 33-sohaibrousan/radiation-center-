@@ -18,7 +18,7 @@
                     <div class="d-flex align-items-center justify-content-center bg-primary rounded-circle mb-4" style="width: 100px; height: 70px; transform: rotate(-15deg);">
                         <i class="fa fa-2x fa-location-arrow text-white" style="transform: rotate(15deg);"></i>
                     </div>
-                    <h6 class="mb-0">123 Street, New York, USA</h6>
+                    <h6 class="mb-0">123 Street, IRBID</h6>
                 </div>
             </div>
             <div class="col-lg-4">
@@ -26,7 +26,7 @@
                     <div class="d-flex align-items-center justify-content-center bg-primary rounded-circle mb-4" style="width: 100px; height: 70px; transform: rotate(-15deg);">
                         <i class="fa fa-2x fa-phone text-white" style="transform: rotate(15deg);"></i>
                     </div>
-                    <h6 class="mb-0">+012 345 6789</h6>
+                    <a href="tel:+962790552430" target="_blank" class="fa fa-phone">Phone</a>
                 </div>
             </div>
             <div class="col-lg-4">
@@ -34,7 +34,7 @@
                     <div class="d-flex align-items-center justify-content-center bg-primary rounded-circle mb-4" style="width: 100px; height: 70px; transform: rotate(-15deg);">
                         <i class="fa fa-2x fa-envelope-open text-white" style="transform: rotate(15deg);"></i>
                     </div>
-                    <h6 class="mb-0">info@example.com</h6>
+                    <a href="mailto:sohibalrousan99@gmail.com" target="_blank" class="fa fa-google">Mail</a>
                 </div>
             </div>
         </div>
@@ -57,27 +57,85 @@
                         <form>
                             <div class="row g-3">
                                 <div class="col-12 col-sm-6">
-                                    <input type="text" class="form-control bg-light border-0" name="Name" placeholder="Your Name" style="height: 55px;">
+                                    <input type="text" class="form-control bg-light border-0" id="Name" name="Name" placeholder="Your Name" style="height: 55px;"required>
                                 </div>
                                 <div class="col-12 col-sm-6">
-                                    <input type="email" class="form-control bg-light border-0" name="Email" placeholder="Your Email" style="height: 55px;">
+                                    <input type="email" class="form-control bg-light border-0" id="Email" name="Email" placeholder="Your Email" style="height: 55px;" required>
                                 </div>
                                 <div class="col-12">
-                                    <input type="text" class="form-control bg-light border-0" name="Subject" placeholder="Subject" style="height: 55px;">
+                                    <input type="text" class="form-control bg-light border-0" id="Subject" name="Subject" placeholder="Subject" style="height: 55px;"required>
                                 </div>
                                 <div class="col-12">
-                                    <textarea class="form-control bg-light border-0" rows="5" name="Message" placeholder="Message"></textarea>
+                                    <textarea class="form-control bg-light border-0" rows="5" id="Message" name="Message" placeholder="Message"required></textarea>
                                 </div>
                                 <div class="col-12">
-                                    <button class="btn btn-primary w-100 py-3" type="submit">Send Message</button>
+                                    <input class="btn btn-primary w-100 py-3" value="Send Message" type="submit" onclick="preventDefault()"required />
                                 </div>
                             </div>
                         </form>
                     </div>
                 </div>
             </div>
+            @*<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.0/dist/sweetalert2.min.js"></script>
+            <script>
+                function preventDefault() {
+                    Swal.fire(
+                        'Good job!',
+                        'You clicked the button!',
+                        'success'
+                    ).then((result) => {
+                       .then(function () {
+                           window.location.href = "/Devices/Index";
+
+                           Devices / Index
+
+
+                       })
+                        
+                    });
+                }
+
+            </script>*@
         }
-        </div>
-        
+    </div>
+
 </div>
 <!-- Contact End -->
+@*<script>
+    function preventDefault(event) {
+        event.preventDefault();
+
+        // Get the form element
+        var form = document.getElementById("myForm");
+
+        // Create a FormData object to submit the form data
+        var formData = new FormData(form);
+
+        // Submit the form using an AJAX request
+        fetch(form.action, {
+            method: 'POST',
+            body: formData
+        })
+            .then(response => {
+
+                // Show the success SweetAlert after the action is complete
+                Swal.fire({
+                    position: 'top-end',
+                    icon: 'success',
+                    title: 'Your work has been saved',
+                    showConfirmButton: false,
+                    timer: 1500
+                })
+
+                    .then(function () {
+                        window.location.href = "/Home/Contact";
+
+                        Home / Contact
+
+
+                    })
+
+            })
+
+    }
+</script>*@

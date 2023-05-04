@@ -27,16 +27,18 @@ namespace Masterpies.Controllers
             var x1 = db.Devices.Where(x => x.DeviceName.Contains(search)).ToList();
             return View("Index",x1);
         }
-
+      
         public ActionResult XRay(int? id, string slot, string AppointmentDate, string datatocheckout, string SelectedTime, string FirstName, string LastName, string patientAge, string patientgender, string city)
         {
             var devicename = db.Devices.FirstOrDefault(x => x.DeviceID == id);
             ViewBag.Devicename = devicename.DeviceName;
             ViewBag.DeviceId = devicename.DeviceID;
+            TempData["devicename"] = devicename.DeviceName;
+            TempData["DeviceId"] = devicename.DeviceID;
 
+            TempData["id"] = id;
             Session["device"] = id;
-            var price = db.Devices.Where(a => a.DeviceID == id).FirstOrDefault().ToString();
-            ViewBag.price = price;
+            Session["xray"] = "welcome";
             var ray = db.Devices.Where(x => x.DeviceID == id).ToList();
             ViewBag.flag = true;
 

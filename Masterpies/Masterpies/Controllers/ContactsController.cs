@@ -50,32 +50,60 @@ namespace Masterpies.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "id,Name,Email,Subject,Message")] Contact contact)
+        public ActionResult Create([Bind(Include = "id,Name,Email,Subject,Message")] Contact contact ,string Email,string Subject ,string Message,string Name)
         {
             if (ModelState.IsValid)
             {
-                // Read email credentials from configuration or environment variables
-                var fromEmail = ConfigurationManager.AppSettings["sohaibalrousan99@gmail.com"];
-                var emailPassword = ConfigurationManager.AppSettings["sjaros,23799"];
+          
+                try
+                {
 
-                MailMessage mail = new MailMessage();
-                mail.To.Add("alrousansohaib@gmail.com");
-                mail.From = new MailAddress(contact.Email);
-                mail.Subject = "Contact Form Submission: " + contact.Subject;
-                mail.Body = contact.Message;
-                mail.IsBodyHtml = true;
 
-                SmtpClient smtp = new SmtpClient();
-                smtp.Port = 587;
-                smtp.EnableSsl = true;
-                smtp.UseDefaultCredentials = false;
-                smtp.Host = "smtp.gmail.com";
-                smtp.Credentials = new System.Net.NetworkCredential("alrousansohaib@gmail.com", "sjaros.23799");
-                smtp.Send(mail);
+
+
+                    MailMessage mail = new MailMessage();
+
+                    // Set the sender's email address
+                    mail.From = new MailAddress("sohaibalrousan99@gmail.com");
+
+                    // Set the recipient's email address
+
+                    mail.To.Add("alrousansohaib@gmail.com");
+
+                    // Set the subject of the email
+                    mail.Subject = "New message from " +Name +" "+Email+" "+ Subject ;
+
+                    // Set the body of the email
+
+                    mail.Body = Message;
+
+                    // Set the body format to HTML
+                    mail.IsBodyHtml = true;
+
+                    // Create a new SmtpClient object
+                    SmtpClient smtp = new SmtpClient("smtp-mail.outlook.com", 587);
+                    smtp.UseDefaultCredentials = false;
+                    smtp.Credentials = new NetworkCredential("sohaibalrousan99@gmail.com", "Sjaros.23799");
+                    smtp.EnableSsl = true;
+
+                    // Send the email
+                    smtp.Send(mail);
+                }
+                catch (Exception ex)
+                {
+
+
+
+
+
+
+                }
+
+                //email
 
                 db.Contacts.Add(contact);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Contact","Home");
             }
 
             return View(contact);

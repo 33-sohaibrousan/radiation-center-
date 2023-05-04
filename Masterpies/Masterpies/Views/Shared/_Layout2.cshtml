@@ -62,26 +62,28 @@
                 <div class="collapse navbar-collapse" id="navbarCollapse">
                     <div class="navbar-nav ms-auto py-0">
                         <li>
-                            <a href="/Home/index" class="nav-item nav-link">Home</a>
+                            <a href="/Home/index" class="nav-item nav-link custom-nav-link">Home</a>
                         </li>
                         @{
                             Masterpies.Models.MasterPieseEntities2 db = new Masterpies.Models.MasterPieseEntities2();
                             Masterpies.Models.Device device = new Masterpies.Models.Device();
                             var dev = db.Devices.ToList();
                             <div class="nav-item dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Service</a>
+                                <a href="#" class="nav-link dropdown-toggle custom-nav-link" data-bs-toggle="dropdown">Service</a>
                                 <div class="dropdown-menu m-0">
 
 
 
                                     @foreach (var item in dev)
                                     {
-                                        <a href="/Devices/XRay?id=@item.DeviceID" class="dropdown-item">@item.DeviceName</a>
-                                        @*@Html.ActionLink("Read More", "XRay", "Devices", new { id = item.DeviceID }, "")*@
+                                        @*<a href="/Devices/XRay?id=@item.DeviceID" class="dropdown-item">@item.DeviceName</a>*@
+                                        <a class="dropdown-item" href="@Url.Action("XRay", "Devices", new { id = item.DeviceID})">@item.DeviceName</a>
+
+                                            @*@Html.ActionLink("Read More", "XRay", "Devices", new { id = item.DeviceID }, "")*@
                                     }
 
 
-                                </div>
+                                    </div>
                             </div>
                         }
                         @if (User.Identity.IsAuthenticated)
@@ -89,38 +91,25 @@
 
 
 
-                            <a href="@Url.Action("profile1", "Users")" class="nav-item nav-link">Profile</a>
+                            <a href="@Url.Action("profile1", "Users")" class="nav-item nav-link custom-nav-link">Profile</a>
 
 
                             if (User.IsInRole("Admin"))
                             {
-                                <a href="/Devices/Index" class="nav-link">DashBoard</a>
+                                <a href="/AdminAppointments/statistics" class="nav-link custom-nav-link">DashBoard</a>
                             }
 
 
 
                         }
-                        <div class="nav-item dropdown">
-                            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
-                            <div class="dropdown-menu m-0">
-                                <a href="blog.html" class="dropdown-item">Blog Grid</a>
-                                <a href="detail.html" class="dropdown-item">Blog Detail</a>
-                                <a href="team.html" class="dropdown-item">The Team</a>
-                                <a href="testimonial.html" class="dropdown-item">Testimonial</a>
-                                <a href="appointment.html" class="dropdown-item">Appointment</a>
-                                <a href="search.html" class="dropdown-item">Search</a>
-                            </div>
-                        </div>
+
                         <li>
-                            <a href="/Home/About" class="nav-item nav-link">About</a>
+                            <a href="/Home/About" class="nav-item nav-link custom-nav-link">About</a>
 
                         </li>
                         <li class=" @(ViewContext.RouteData.Values["Action"].ToString()=="Contact"?"active":"" )">
-                            @Html.ActionLink("Contact", "Contact", "Home", new { @class = "nav-item nav-link " })
+                            @Html.ActionLink("Contact", "Contact", "Home", new { @class = "nav-item nav-link custom-nav-link" })
                         </li>
-                        @*<a href="about.html" class="nav-item nav-link">About</a>
-
-                            <a href="contact.html" class="nav-item nav-link">Contact</a>*@
                         @Html.Partial("_LoginPartial")
 
                     </div>
@@ -215,6 +204,26 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.0/dist/sweetalert2.min.js"></script>
     @RenderSection("scripts", required: false)
 
+    <script>
+        function setActiveNavLink() {
+            const currentUrl = window.location.href;
+            const navLinks = document.getElementsByClassName('custom-nav-link');
+
+            for (let i = 0; i < navLinks.length; i++) {
+                const navLinkUrl = navLinks[i].href;
+
+                if (currentUrl === navLinkUrl) {
+                    navLinks[i].classList.add('active');
+                } else {
+                    navLinks[i].classList.remove('active');
+                }
+            }
+        }
+
+        // Call the function when the page loads
+        window.onload = setActiveNavLink;
+    </script>
+
     @*<script>
         $(document).ready(function () {
 
@@ -283,8 +292,8 @@
             //    return false;
             //})
 
-        });*@
-    </script>
+        });</script>*@
+
 
 </body>
 
