@@ -890,6 +890,8 @@
                         <li><b>City :</b>@Session["city"]</li>
                         <li><b>Time :</b> @Session["time"]</li>
                         <li><b>Date :</b> @Session["AppointmentDate1"]</li>
+                        <li><b>price :</b> @ViewBag.prepayment</li>
+
                     </ul>
                 </div>
                 @*<script>
@@ -920,7 +922,7 @@
             </div>
             <div class="payment__types">
                 <div class="payment__type payment__type--cc active">
-                    <i class="icon icon-credit-card"></i> 
+                    <i class="icon icon-credit-card"></i> Credit Card
                 </div>
                 <div class="payment__type payment__type--paypal active">
                     <i class="icon icon-paypal"></i>Paypal

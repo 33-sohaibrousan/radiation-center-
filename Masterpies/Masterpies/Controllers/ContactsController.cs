@@ -64,14 +64,14 @@ namespace Masterpies.Controllers
                     MailMessage mail = new MailMessage();
 
                     // Set the sender's email address
-                    mail.From = new MailAddress("sohaibalrousan99@gmail.com");
+                    mail.From = new MailAddress("sohaibalrousan99@outlook.com");
 
                     // Set the recipient's email address
 
                     mail.To.Add("alrousansohaib@gmail.com");
 
                     // Set the subject of the email
-                    mail.Subject = "New message from " +Name +" "+Email+" "+ Subject ;
+                    mail.Subject = "New message from " + Name + " " + Email + " " + Subject;
 
                     // Set the body of the email
 
@@ -83,7 +83,7 @@ namespace Masterpies.Controllers
                     // Create a new SmtpClient object
                     SmtpClient smtp = new SmtpClient("smtp-mail.outlook.com", 587);
                     smtp.UseDefaultCredentials = false;
-                    smtp.Credentials = new NetworkCredential("sohaibalrousan99@gmail.com", "Sjaros.23799");
+                    smtp.Credentials = new NetworkCredential("sohaibalrousan99@outlook.com", "Sohaib@123");
                     smtp.EnableSsl = true;
 
                     // Send the email

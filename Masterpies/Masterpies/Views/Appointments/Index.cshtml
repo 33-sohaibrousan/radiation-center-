@@ -35,9 +35,7 @@
         <th>
             @Html.DisplayNameFor(model => model.StartTime)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.EndTime)
-        </th>
+       
         <th>
             @Html.DisplayNameFor(model => model.IsAccepted)
         </th>
@@ -47,14 +45,13 @@
         <th>
             @Html.DisplayNameFor(model => model.Device.DeviceName)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.TimeSlot.TimeSlotID)
-        </th>
+      
         <th></th>
     </tr>
 
     @foreach (var item in Model)
     {
+
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.FirstName)
@@ -66,7 +63,19 @@
                 @Html.DisplayFor(modelItem => item.patientAge)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.patientgender)
+                @if (item.patientgender == null)
+                {
+                    <span>select gender</span>
+                }
+                else if (item.patientgender == false)
+                {
+                    <span>Female</span>
+                }
+                else if (item.patientgender == true)
+                {
+                    <span>Male</span>
+
+                }
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.city)
@@ -77,11 +86,22 @@
             <td>
                 @Html.DisplayFor(modelItem => item.StartTime)
             </td>
+
             <td>
-                @Html.DisplayFor(modelItem => item.EndTime)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.IsAccepted)
+                @if (item.IsAccepted == null)
+                {
+                    <span>Pending</span>
+                }
+                else if (item.IsAccepted == false)
+                {
+                    <span>Reject</span>
+                }
+                else if (item.IsAccepted == true)
+                {
+                    <span>Acepted</span>
+
+                }
+
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.AspNetUser.Email)
@@ -89,9 +109,7 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Device.DeviceName)
             </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.TimeSlot.TimeSlotID)
-            </td>
+
             <td>
                 @Html.ActionLink("Edit", "Edit", new { id = item.AppointmentID }) |
                 @Html.ActionLink("Details", "Details", new { id = item.AppointmentID }) |

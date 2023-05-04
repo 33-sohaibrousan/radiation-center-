@@ -57,7 +57,12 @@ namespace Masterpies.Controllers
             var Devices = db.Devices.ToList();
             var appoiment = db.Appointments.ToList();
 
-            //return View(Tuple.Create(AspNetUsers, Devices, appoiment));
+            if (devicename != null)
+            {
+                var prepayment = Convert.ToInt32(devicename.Price * 0.1);
+                ViewBag.prepayment = prepayment;
+            }
+
             return View();
         }
         public ActionResult ConfirmBooking(int id, [Bind(Include = "AppointmentID,FirstName,LastName,patientAge,city,DeviceID, AppointmentDate,aspuserid,StartTime,EndTime,IsAccepted,Timeslotsid")] Appointment appoint, string card_name)
@@ -81,6 +86,8 @@ namespace Masterpies.Controllers
             {
                 appoint.patientgender = false;
             }
+         
+;
 
 
 
