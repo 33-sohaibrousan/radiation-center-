@@ -35,8 +35,8 @@ namespace Masterpies.Controllers
             ViewBag.DeviceId = devicename.DeviceID;
 
             Session["device"] = id;
-
-
+            var price = db.Devices.Where(a => a.DeviceID == id).FirstOrDefault().ToString();
+            ViewBag.price = price;
             var ray = db.Devices.Where(x => x.DeviceID == id).ToList();
             ViewBag.flag = true;
 
@@ -71,6 +71,7 @@ namespace Masterpies.Controllers
                Session["FirstName"] = FirstName;
                Session["LastName"] = LastName;
                Session["AppointmentDate1"] = Session["AppointmentDate"];
+                
             
 
 

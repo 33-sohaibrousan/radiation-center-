@@ -14,6 +14,12 @@ namespace Masterpies.Models
     
     public partial class User
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public User()
+        {
+            this.comments = new HashSet<comment>();
+        }
+    
         public int iduser { get; set; }
         public string userName { get; set; }
         public Nullable<int> Age { get; set; }
@@ -22,5 +28,7 @@ namespace Masterpies.Models
         public string PhoneNumber { get; set; }
     
         public virtual AspNetUser AspNetUser { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<comment> comments { get; set; }
     }
 }

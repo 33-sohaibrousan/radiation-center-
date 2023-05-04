@@ -11,8 +11,7 @@ namespace Masterpies.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel;
-
+    
     public partial class Appointment
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -30,7 +29,6 @@ namespace Masterpies.Models
         public Nullable<int> DeviceID { get; set; }
         public Nullable<System.DateTime> AppointmentDate { get; set; }
         public string aspuserid { get; set; }
-        [DisplayName("Appointment Time")]
         public string StartTime { get; set; }
         public string EndTime { get; set; }
         public Nullable<bool> IsAccepted { get; set; }

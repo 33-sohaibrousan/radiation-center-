@@ -49,14 +49,7 @@
                         <h1 class="display-4">What is a @item.DeviceName Exam?   </h1>
                     </div>
                     <p>
-                        @item.Description
-                        @*X-ray is the most common form of medical imaging. An x-ray image is created when a small amount of radiation passes through the body to reach a digital imaging plate.
-
-                        When x-rays encounter different materials they are slowed or absorbed in varying amounts, creating an image. Dense material such as bone shows up as white while softer tissues show as varying shades of gray.
-
-
-
-                        X-Ray’s are walk-in. No appointment necessary.*@
+                        @item.Description               
                     </p>
 
                 </div>
@@ -74,24 +67,25 @@
         <!-- Accordion -->
         <div class="row">
             <div class="col-md mb-4 mb-md-0">
-                <div class="accordion mt-3" id="accordionExample">
-                    <div class="card accordion-item active">
+                <div class="accordion mt-3 active" id="accordionExample">
+                    <div class="card accordion-item">
                         <h2 class="accordion-header" id="headingOne">
                             <button type="button"
-                                    class="accordion-button btn btn-primary"
+                                    class="accordion-button collapsed"
                                     data-bs-toggle="collapse"
                                     data-bs-target="#accordionOne"
-                                    aria-expanded="true"
+                                    aria-expanded="false"
                                     aria-controls="accordionOne">
-                                - What to expect during your exam
+                                Accordion Item 1
                             </button>
                         </h2>
-
                         <div id="accordionOne"
-                             class="accordion-collapse collapse show"
+                             class="accordion-collapse collapse"
+                             aria-labelledby="headingTwo"
                              data-bs-parent="#accordionExample">
                             <div class="accordion-body">
                                 @item.step1
+
                             </div>
                         </div>
                     </div>
@@ -154,9 +148,29 @@
                     <h5 class="d-inline-block text-white text-uppercase border-bottom border-5">Appointment</h5>
                     <h1 class="display-4">Make An Appointment For Your Family</h1>
                 </div>
-                <p class="text-white mb-5">Eirmod sed tempor lorem ut dolores. Aliquyam sit sadipscing kasd ipsum. Dolor ea et dolore et at sea ea at dolor, justo ipsum duo rebum sea invidunt voluptua. Eos vero eos vero ea et dolore eirmod et. Dolores diam duo invidunt lorem. Elitr ut dolores magna sit. Sea dolore sanctus sed et. Takimata takimata sanctus sed.</p>
-                <a class="btn btn-dark rounded-pill py-3 px-5 me-3" href="">Find Doctor</a>
-                <a class="btn btn-outline-dark rounded-pill py-3 px-5" href="">Read More</a>
+                @*<p class="text-white mb-5">Eirmod sed tempor lorem ut dolores. Aliquyam sit sadipscing kasd ipsum. Dolor ea et dolore et at sea ea at dolor, justo ipsum duo rebum sea invidunt voluptua. Eos vero eos vero ea et dolore eirmod et. Dolores diam duo invidunt lorem. Elitr ut dolores magna sit. Sea dolore sanctus sed et. Takimata takimata sanctus sed.</p>*@
+                @*<a class="btn btn-dark rounded-pill py-3 px-5 me-3" href="">Find Doctor</a>
+        <a class="btn btn-outline-dark rounded-pill py-3 px-5" href="">Read More</a>*@
+                <div class="bg-light rounded d-flex align-items-center p-5 mb-4">
+                    <div class="d-flex flex-shrink-0 align-items-center justify-content-center rounded-circle bg-white" style="width: 55px; height: 55px;">
+                        <i class="fa fa-phone-alt text-primary"></i>
+                    </div>
+                    <div class="ms-4">
+                        <p class="mb-2">Call Us Now</p>
+                        @*<h5 class="mb-0">+962790552430</h5>*@
+                        <a href="tel:+962790552430" target="_blank" class="fa fa-phone">Phone</a>
+
+                    </div>
+                </div>
+                <div class="bg-light rounded d-flex align-items-center p-5">
+                    <div class="d-flex flex-shrink-0 align-items-center justify-content-center rounded-circle bg-white" style="width: 55px; height: 55px;">
+                        <i class="fa fa-envelope-open text-primary"></i>
+                    </div>
+                    <div class="ms-4">
+                        <p class="mb-2">Mail Us Now</p>
+                        <a href="mailto:sohibalrousan99@gmail.com" target="_blank" class="fa fa-google">Mail</a>
+                    </div>
+                </div>
             </div>
             <div class="col-lg-6">
                 <div class="bg-white text-center rounded p-5" id="appoint">
@@ -179,6 +193,8 @@
 
                             <div class=""><p> Date: @ViewBag.date</p></div>
                             <div id="selectedTimeValue"></div>
+                            <p>@ViewBag.price</p>
+
                         }
 
 

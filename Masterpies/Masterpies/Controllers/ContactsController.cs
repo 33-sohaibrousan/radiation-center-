@@ -1,11 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
+using System.Net.Mail;
 using System.Web;
+using System.Web.Helpers;
 using System.Web.Mvc;
+using System.Web.Services.Description;
 using Masterpies.Models;
 
 namespace Masterpies.Controllers
@@ -50,6 +54,25 @@ namespace Masterpies.Controllers
         {
             if (ModelState.IsValid)
             {
+                // Read email credentials from configuration or environment variables
+                var fromEmail = ConfigurationManager.AppSettings["sohaibalrousan99@gmail.com"];
+                var emailPassword = ConfigurationManager.AppSettings["sjaros,23799"];
+
+                MailMessage mail = new MailMessage();
+                mail.To.Add("alrousansohaib@gmail.com");
+                mail.From = new MailAddress(contact.Email);
+                mail.Subject = "Contact Form Submission: " + contact.Subject;
+                mail.Body = contact.Message;
+                mail.IsBodyHtml = true;
+
+                SmtpClient smtp = new SmtpClient();
+                smtp.Port = 587;
+                smtp.EnableSsl = true;
+                smtp.UseDefaultCredentials = false;
+                smtp.Host = "smtp.gmail.com";
+                smtp.Credentials = new System.Net.NetworkCredential("alrousansohaib@gmail.com", "sjaros.23799");
+                smtp.Send(mail);
+
                 db.Contacts.Add(contact);
                 db.SaveChanges();
                 return RedirectToAction("Index");
