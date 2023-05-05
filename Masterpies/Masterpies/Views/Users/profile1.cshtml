@@ -191,7 +191,7 @@
                         <!-- Orders -->
                         <div id="orders" class="product-order tab-pane fade active show">
                             <h3>Pending reservations</h3>
-                            <div class="table-responsive">
+                            <div class="table-responsive" style="overflow-x: auto; overflow-y: auto; white-space: nowrap; max-height: 600px; ">
                                 @Html.Action("_profileappending")
 
                             </div>
@@ -324,7 +324,7 @@
                         <!-- Account Details -->
                         <div id="mytickets" class="tab-pane fade">
                             <h3>My tickets</h3>
-                            <div class="table-responsive">
+                            <div class="table-responsive" style=" overflow-x: auto; overflow-y: auto; white-space: nowrap; max-height: 600px;">
                                 @Html.Action("_profileapp")
 
                             </div>
