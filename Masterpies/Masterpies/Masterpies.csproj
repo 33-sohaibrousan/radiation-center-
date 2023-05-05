@@ -3772,6 +3772,7 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\bootstrap.rtl.css" />
     <Content Include="Content\bootstrap.rtl.min.css" />
+    <Content Include="Content\stylecheckpot.css" />
     <Content Include="css\bootstrap.min.css" />
     <Content Include="css\style.css" />
     <Content Include="favicon.ico" />
@@ -3785,6 +3786,7 @@
     <Content Include="img\blog-2.jpg" />
     <Content Include="img\blog-3.jpg" />
     <Content Include="img\centers.png" />
+    <Content Include="img\checkout.png" />
     <Content Include="img\ct1pagecover.jpg" />
     <Content Include="img\hero.jpg" />
     <Content Include="img\homewho.png" />
