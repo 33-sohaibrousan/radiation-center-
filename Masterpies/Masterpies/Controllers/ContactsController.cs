@@ -71,7 +71,7 @@ namespace Masterpies.Controllers
                     mail.To.Add("alrousansohaib@gmail.com");
 
                     // Set the subject of the email
-                    mail.Subject = "New message from " +Name +" "+Email+" "+ Subject ;
+                    mail.Subject = "New message from " + Name + " " + Email + " " + Subject;
 
                     // Set the body of the email
 

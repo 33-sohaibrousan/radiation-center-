@@ -5,7 +5,9 @@ using System.Data.Entity;
 using System.Linq;
 using System.Net;
 using System.Net.Mail;
+using System.Runtime.CompilerServices;
 using System.Web;
+using System.Web.Helpers;
 using System.Web.Mvc;
 using Masterpies.Models;
 
@@ -33,14 +35,32 @@ namespace Masterpies.Controllers
             int device = db.Devices.Count();
             int aspuser = db.AspNetUsers.Count();
 
+          
 
 
+            // Get the distinct DeviceIDs from the Devices table
+            var distinctDeviceIDs = db.Devices.Distinct().ToList();
+           List<int> deviceSum = new List<int>();
+            // Loop through each distinct DeviceID
+            foreach (var deviceId in distinctDeviceIDs)
+            {
+
+                var deviceMoney = db.Appointments.Where(x => x.IsAccepted == true && x.DeviceID == deviceId.DeviceID).ToList();
+                int count = 0;
+                foreach (var item in deviceMoney)
+                {
+                    count += Convert.ToInt32(deviceId.Price);
+                }
+                deviceSum.Add(Convert.ToInt32(count*0.1));  
+
+            }
             ViewBag.requst = requst;
             ViewBag.AcceptedCount = acceptedCount;
             ViewBag.reject = reject;
             ViewBag.user = user;
             ViewBag.device = device;
             ViewBag.aspuser = aspuser;
+            ViewBag.deviceSum = deviceSum;
 
 
 
@@ -92,6 +112,7 @@ namespace Masterpies.Controllers
             {
 
                 var acceptapp = db.Appointments.Where(s => s.IsAccepted == true).Include(s => s.Device).Include(a => a.TimeSlot).OrderByDescending(a => a.AppointmentID);
+               
                 return View(acceptapp.ToList());
             }
         }
@@ -107,7 +128,59 @@ namespace Masterpies.Controllers
         public ActionResult accept(int? id)
         {
             Appointment appointment = db.Appointments.Find(id);
+            Appointment appointment1 = db.Appointments.Include(a => a.AspNetUser).SingleOrDefault(a => a.AppointmentID == id);
+
+            string userEmail = appointment.AspNetUser.Email;
+
+            // Perform any desired operations using the userEmail
+
+            db.Entry(appointment).State = EntityState.Modified;
             appointment.IsAccepted = true;
+            //emaiiil
+
+
+            //Create a new MailMessage object
+            try
+            {
+                MailMessage mail = new MailMessage();
+
+                // Set the sender's email address
+                mail.From = new MailAddress("sohaibalrousan99@outlook.com");
+
+                // Set the recipient's email address
+
+                mail.To.Add(userEmail);
+
+                // Set the subject of the email
+                mail.Subject = "New message from " + "Finding piece";
+
+                // Set the body of the email
+
+                mail.Body = $"<b>Welcome to Finding Peace!</b><br/><br/>Dr-, your registration has been submitted and is waiting for approval. You will receive an email notification when your account has been accepted.";
+
+                // Set the body format to HTML
+                mail.IsBodyHtml = true;
+
+                // Create a new SmtpClient object
+                SmtpClient smtp = new SmtpClient("smtp-mail.outlook.com", 587);
+                smtp.UseDefaultCredentials = false;
+                smtp.Credentials = new NetworkCredential("sohaibalrousan99@outlook.com", "Sohaib@123");
+                smtp.EnableSsl = true;
+
+                // Send the email
+                smtp.Send(mail);
+            }
+            catch (Exception ex)
+            {
+
+
+
+
+
+
+            }
+
+            //email
             db.SaveChanges();
             return RedirectToAction("Requsts", "AdminAppointments");
         }
@@ -119,7 +192,54 @@ namespace Masterpies.Controllers
         public ActionResult reject(int? id)
         {
             Appointment appointment = db.Appointments.Find(id);
+            Appointment appointment1 = db.Appointments.Include(a => a.AspNetUser).SingleOrDefault(a => a.AppointmentID == id);
+            string userEmail = appointment.AspNetUser.Email;
+            // Perform any desired operations using the userEmail
+            db.Entry(appointment).State = EntityState.Modified;
             appointment.IsAccepted = false;
+            //emaiiil
+
+
+            //Create a new MailMessage object
+            try
+            {
+                MailMessage mail = new MailMessage();
+
+                // Set the sender's email address
+                mail.From = new MailAddress("sohaibalrousan99@outlook.com");
+
+                // Set the recipient's email address
+
+                mail.To.Add(userEmail);
+
+                // Set the subject of the email
+                mail.Subject = "New message from " + "Finding piece";
+
+                // Set the body of the email
+
+                mail.Body = $"<b>Welcome to Finding Peace!</b><br/><br/>Dr-, your registration has been submitted and is waiting for approval. You will receive an email notification when your account has been accepted.";
+
+                // Set the body format to HTML
+                mail.IsBodyHtml = true;
+
+                // Create a new SmtpClient object
+                SmtpClient smtp = new SmtpClient("smtp-mail.outlook.com", 587);
+                smtp.UseDefaultCredentials = false;
+                smtp.Credentials = new NetworkCredential("sohaibalrousan99@outlook.com", "Sohaib@123");
+                smtp.EnableSsl = true;
+
+                // Send the email
+                smtp.Send(mail);
+            }
+            catch (Exception ex)
+            {
+
+
+
+
+
+
+            }
             db.SaveChanges();
             return RedirectToAction("Requsts", "AdminAppointments");
 

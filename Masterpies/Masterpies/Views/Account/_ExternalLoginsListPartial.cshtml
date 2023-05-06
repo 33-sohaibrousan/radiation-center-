@@ -1,7 +1,8 @@
 ﻿@model Masterpies.Models.ExternalLoginListViewModel
+ 
 @using Microsoft.Owin.Security
 
-<h4>Use another service to log in.</h4>
+@*<h4>Use another service to log in.</h4>*@
 <hr />
 @{
     var loginProviders = Context.GetOwinContext().Authentication.GetExternalAuthenticationTypes();
@@ -16,11 +17,13 @@
     else {
         using (Html.BeginForm("ExternalLogin", "Account", new { ReturnUrl = Model.ReturnUrl })) {
             @Html.AntiForgeryToken()
-            <div id="socialLoginList">
+            <div id="socialLoginList" class="social d-flex text-center">
                 <p>
-                    @foreach (AuthenticationDescription p in loginProviders) {
-                        <button type="submit" class="btn btn-default" id="@p.AuthenticationType" name="provider" value="@p.AuthenticationType" title="Log in using your @p.Caption account">@p.AuthenticationType</button>
-                    }
+                    @foreach (AuthenticationDescription p in loginProviders)
+                    {
+                        <button type="submit" style="border:none;" class="px-2 py-2 ml-md-1 rounded" id="@p.AuthenticationType" name="provider" value="@p.AuthenticationType" title="Log in using your @p.Caption account">@p.AuthenticationType</button>
+                    }        @*<a href="#" class="px-2 py-2 ml-md-1 rounded"><span class="ion-logo-twitter mr-2"></span> Twitter</a>*@
+
                 </p>
             </div>
         }

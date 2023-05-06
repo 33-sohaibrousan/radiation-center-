@@ -42,11 +42,16 @@
     @*<link rel="stylesheet" href="~/loginfile/fonts/material-icon/css/material-design-iconic-font.min.css">*@
 
     <link rel="stylesheet" href="~/loginfile/css/style1.css">
+
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <link rel="stylesheet" href="~/login/css/style.css">
 </head>
 
 <body>
     <!-- Topbar Start -->
-  
     <!-- Topbar End -->
     <!-- Navbar Start -->
     <div class="container-fluid sticky-top bg-white shadow-sm">
@@ -62,7 +67,8 @@
                 <div class="collapse navbar-collapse" id="navbarCollapse">
                     <div class="navbar-nav ms-auto py-0">
                         <li class=" @(ViewContext.RouteData.Values["Action"].ToString()=="Index"?"active":"" )">
-                        @Html.ActionLink("Home", "Index", "Home", new {@class="nav-item nav-link "})</li>
+                            @Html.ActionLink("Home", "Index", "Home", new { @class = "nav-item nav-link " })
+                        </li>
 
                         @*<a href="index.html" class="nav-item nav-link active">Home</a>*@
                         <a href="service.html" class="nav-item nav-link">Service</a>
@@ -78,13 +84,15 @@
                                 <a href="search.html" class="dropdown-item">Search</a>
                             </div>
                         </div>
-                        <li  class=" @(ViewContext.RouteData.Values["Action"].ToString()=="About"?"active":"" )">
-                        @Html.ActionLink("About", "About", "Home", new { @class = "nav-item nav-link" })</li>
-                        <li  class=" @(ViewContext.RouteData.Values["Action"].ToString()=="Contact"?"active":"" )">
-                        @Html.ActionLink("Contact", "Contact", "Home", new { @class = "nav-item nav-link " })</li>
+                        <li class=" @(ViewContext.RouteData.Values["Action"].ToString()=="About"?"active":"" )">
+                            @Html.ActionLink("About", "About", "Home", new { @class = "nav-item nav-link" })
+                        </li>
+                        <li class=" @(ViewContext.RouteData.Values["Action"].ToString()=="Contact"?"active":"" )">
+                            @Html.ActionLink("Contact", "Contact", "Home", new { @class = "nav-item nav-link " })
+                        </li>
                         @*<a href="about.html" class="nav-item nav-link">About</a>
 
-        <a href="contact.html" class="nav-item nav-link">Contact</a>*@
+                            <a href="contact.html" class="nav-item nav-link">Contact</a>*@
                         @Html.Partial("_LoginPartial")
 
                     </div>
@@ -95,7 +103,6 @@
     <!-- Navbar End -->
     @RenderBody()
     <!-- Footer Start -->
-   
     <!-- Footer End -->
     <!-- Back to Top -->
     <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
@@ -113,6 +120,11 @@
 
     <!-- Template Javascript -->
     <script src="~/js/main.js"></script>
+
+    <script src="~/login/js/jquery.min.js"></script>
+    <script src="~/login/js/popper.js"></script>
+    <script src="~/login/js/bootstrap.min.js"></script>
+    <script src="~/login/js/main.js"></script>
     @RenderSection("scripts", required: false)
 
 </body>
