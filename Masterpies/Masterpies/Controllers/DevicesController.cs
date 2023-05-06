@@ -74,18 +74,10 @@ namespace Masterpies.Controllers
                Session["LastName"] = LastName;
                Session["AppointmentDate1"] = Session["AppointmentDate"];
                 
-            
-
-
+           
                 return RedirectToAction("checkout", "Appointments", new { id = id });
 
             }
-
-
-
-
-
-
             //var app=db.Appointments.Where(a=> a.DeviceID==id).ToList();
             return View(ray.ToList());
         }
@@ -198,6 +190,7 @@ namespace Masterpies.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Device device = db.Devices.Find(id);
+            Session["photo"] = device.Devicebackground;
             if (device == null)
             {
                 return HttpNotFound();
@@ -215,9 +208,9 @@ namespace Masterpies.Controllers
             //device.DeviceImage = Session["img"].ToString();
             if (ModelState.IsValid)
             {
+                device.Devicebackground = Session["photo"].ToString();
 
-            
-                    string folderPath = Server.MapPath("~/Content/Images");
+                string folderPath = Server.MapPath("~/Content/Images");
                     if (!Directory.Exists(folderPath))
                     {
                         Directory.CreateDirectory(folderPath);

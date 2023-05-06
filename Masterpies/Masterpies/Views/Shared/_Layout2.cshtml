@@ -52,9 +52,10 @@
     <div class="container-fluid sticky-top bg-white shadow-sm">
         <div class="container">
             <nav class="navbar navbar-expand-lg bg-white navbar-light py-3 py-lg-0">
-                <a href="index.html" class="navbar-brand">
-                    <img class="logo" src="~/img/masterlogo.jpg" alt="logo">
-                    <!-- <h1 class="m-0 text-uppercase text-primary"><i class="fa fa-clinic-medical me-2"></i>Medinova</h1> -->
+                <a href="/Home/index" class="navbar-brand">
+                    @*<img class="logo" src="~/img/masterlogo.jpg" alt="logo">Moon Ray*@
+                    <h1 class="m-0 text-uppercase text-primary"> <img class="logo" src="~/img/masterlogo.jpg" alt="logo">Moon Ray</i></h1>
+                    @*<h1 class="m-0 text-uppercase text-primary"><i class="fa fa-clinic-medical me-2"></i></h1>*@
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
                     <span class="navbar-toggler-icon"></span>
@@ -76,10 +77,8 @@
 
                                     @foreach (var item in dev)
                                     {
-                                        @*<a href="/Devices/XRay?id=@item.DeviceID" class="dropdown-item">@item.DeviceName</a>*@
-                                        <a class="dropdown-item" href="@Url.Action("XRay", "Devices", new { id = item.DeviceID})">@item.DeviceName</a>
+                                        <a class="dropdown-item" href="@Url.Action("XRay", "Devices", new { id = item.DeviceID })">@item.DeviceName</a>
 
-                                            @*@Html.ActionLink("Read More", "XRay", "Devices", new { id = item.DeviceID }, "")*@
                                     }
 
 
@@ -107,7 +106,7 @@
                             <a href="/Home/About" class="nav-item nav-link custom-nav-link">About</a>
 
                         </li>
-                        <li class=" @(ViewContext.RouteData.Values["Action"].ToString()=="Contact"?"active":"" )">
+                        <li class=" @(ViewContext.RouteData.Values["Action"].ToString() == "Contact" ? "active" : "" )">
                             @Html.ActionLink("Contact", "Contact", "Home", new { @class = "nav-item nav-link custom-nav-link" })
                         </li>
                         @Html.Partial("_LoginPartial")
@@ -126,30 +125,36 @@
                 <div class="col-lg-3 col-md-6">
                     <h4 class="d-inline-block text-primary text-uppercase border-bottom border-5 border-secondary mb-4">Get In Touch</h4>
                     <p class="mb-4">No dolore ipsum accusam no lorem. Invidunt sed clita kasd clita et et dolor sed dolor</p>
-                    <p class="mb-2"><i class="fa fa-map-marker-alt text-primary me-3"></i>123 Street, New York, USA</p>
-                    <p class="mb-2"><i class="fa fa-envelope text-primary me-3"></i>info@example.com</p>
-                    <p class="mb-0"><i class="fa fa-phone-alt text-primary me-3"></i>+012 345 67890</p>
+                    <p class="mb-2"><i class="fa fa-map-marker-alt text-primary me-3"></i>123 Street, IRBID</p>
+                    <a class="mb-2" href="mailto:sohibalrousan99@gmail.com" target="_blank"><i class="fa fa-envelope text-primary me-3"></i>Mail</a>
+                    <a  href="tel:+962790552430" target="_blank" class="mb-0"><i class="fa fa-phone-alt text-primary me-3"></i>Phone</a>
                 </div>
                 <div class="col-lg-3 col-md-6">
                     <h4 class="d-inline-block text-primary text-uppercase border-bottom border-5 border-secondary mb-4">Quick Links</h4>
                     <div class="d-flex flex-column justify-content-start">
-                        <a class="text-light mb-2" href="#"><i class="fa fa-angle-right me-2"></i>Home</a>
-                        <a class="text-light mb-2" href="#"><i class="fa fa-angle-right me-2"></i>About Us</a>
-                        <a class="text-light mb-2" href="#"><i class="fa fa-angle-right me-2"></i>Our Services</a>
-                        <a class="text-light mb-2" href="#"><i class="fa fa-angle-right me-2"></i>Meet The Team</a>
-                        <a class="text-light mb-2" href="#"><i class="fa fa-angle-right me-2"></i>Latest Blog</a>
-                        <a class="text-light" href="#"><i class="fa fa-angle-right me-2"></i>Contact Us</a>
+                        <a class="text-light mb-2" href="/Home/Index"><i class="fa fa-angle-right me-2"></i>Home</a>
+                        <a class="text-light mb-2" href="/Home/about"><i class="fa fa-angle-right me-2"></i>About Us</a>
+                        <a class="text-light" href="/Home/contact"><i class="fa fa-angle-right me-2"></i>Contact Us</a>
+                        <a class="text-light" href="/Home/Blog"><i class="fa fa-angle-right me-2"></i>Blog</a>
+
+
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-6">
                     <h4 class="d-inline-block text-primary text-uppercase border-bottom border-5 border-secondary mb-4">Popular Links</h4>
                     <div class="d-flex flex-column justify-content-start">
-                        <a class="text-light mb-2" href="#"><i class="fa fa-angle-right me-2"></i>Home</a>
-                        <a class="text-light mb-2" href="#"><i class="fa fa-angle-right me-2"></i>About Us</a>
-                        <a class="text-light mb-2" href="#"><i class="fa fa-angle-right me-2"></i>Our Services</a>
-                        <a class="text-light mb-2" href="#"><i class="fa fa-angle-right me-2"></i>Meet The Team</a>
-                        <a class="text-light mb-2" href="#"><i class="fa fa-angle-right me-2"></i>Latest Blog</a>
-                        <a class="text-light" href="#"><i class="fa fa-angle-right me-2"></i>Contact Us</a>
+                        <a class="text-light mb-2" href="/Home/Index"><i class="fa fa-angle-right me-2"></i>Home</a>
+                        <a class="text-light mb-2" href="/Home/about"><i class="fa fa-angle-right me-2"></i>About Us</a>
+                        <a class="text-light" href="/Home/contact"><i class="fa fa-angle-right me-2"></i>Contact Us</a>
+                        <a class="text-light" href="/Home/Blog"><i class="fa fa-angle-right me-2"></i>Blog</a>
+                        @{
+                            foreach (var item in dev)
+                            {
+                                <a class="text-light" href="@Url.Action("XRay", "Devices", new { id = item.DeviceID })"><i class="fa fa-angle-right me-2"></i>@item.DeviceName</a>
+
+                            }
+                        }
+
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-6">
@@ -224,75 +229,7 @@
         window.onload = setActiveNavLink;
     </script>
 
-    @*<script>
-        $(document).ready(function () {
 
-            var current_fs, next_fs, previous_fs; //fieldsets
-            var opacity;
-
-            $(".next").click(function () {
-
-                current_fs = $(this).parent();
-                next_fs = $(this).parent().next();
-
-                //Add Class Active
-                $("#progressbar li").eq($("fieldset").index(next_fs)).addClass("active");
-
-                //show the next fieldset
-                next_fs.show();
-                //hide the current fieldset with style
-                current_fs.animate({ opacity: 0 }, {
-                    step: function (now) {
-                        // for making fielset appear animation
-                        opacity = 1 - now;
-
-                        current_fs.css({
-                            'display': 'none',
-                            'position': 'relative'
-                        });
-                        next_fs.css({ 'opacity': opacity });
-                    },
-                    duration: 600
-                });
-            });
-
-            $(".previous").click(function () {
-
-                current_fs = $(this).parent();
-                previous_fs = $(this).parent().prev();
-
-                //Remove class active
-                $("#progressbar li").eq($("fieldset").index(current_fs)).removeClass("active");
-
-                //show the previous fieldset
-                previous_fs.show();
-
-                //hide the current fieldset with style
-                current_fs.animate({ opacity: 0 }, {
-                    step: function (now) {
-                        // for making fielset appear animation
-                        opacity = 1 - now;
-
-                        current_fs.css({
-                            'display': 'none',
-                            'position': 'relative'
-                        });
-                        previous_fs.css({ 'opacity': opacity });
-                    },
-                    duration: 600
-                });
-            });
-
-            $('.radio-group .radio').click(function () {
-                $(this).parent().find('.radio').removeClass('selected');
-                $(this).addClass('selected');
-            });
-
-            //$(".submit").click(function () {
-            //    return false;
-            //})
-
-        });</script>*@
 
 
 </body>

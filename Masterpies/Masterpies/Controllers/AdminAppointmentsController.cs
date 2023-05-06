@@ -156,7 +156,7 @@ namespace Masterpies.Controllers
 
                 // Set the body of the email
 
-                mail.Body = $"<b>Welcome to Finding Peace!</b><br/><br/>Dr-, your registration has been submitted and is waiting for approval. You will receive an email notification when your account has been accepted.";
+                mail.Body = $"<b>Welcome ";
 
                 // Set the body format to HTML
                 mail.IsBodyHtml = true;
