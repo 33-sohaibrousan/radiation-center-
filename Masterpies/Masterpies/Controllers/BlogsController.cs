@@ -2,10 +2,12 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Services.Description;
 using Masterpies.Models;
 
 namespace Masterpies.Controllers
@@ -16,6 +18,11 @@ namespace Masterpies.Controllers
 
         // GET: Blogs
         public ActionResult Index()
+        {
+            var blogs = db.Blogs.Include(b => b.AspNetUser);
+            return View(blogs.ToList());
+        }
+        public ActionResult Blog()
         {
             var blogs = db.Blogs.Include(b => b.AspNetUser);
             return View(blogs.ToList());
@@ -48,10 +55,25 @@ namespace Masterpies.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "id,image,title,text,aspuser")] Blog blog)
+        public ActionResult Create([Bind(Include = "id,image,title,text,aspuser")] Blog blog, HttpPostedFileBase image)
         {
             if (ModelState.IsValid)
             {
+
+                string folderPath = Server.MapPath("~/Content/Images");
+                if (!Directory.Exists(folderPath))
+                {
+                    Directory.CreateDirectory(folderPath);
+                }
+                string fileName = Path.GetFileName(image.FileName);
+             
+                string path = Path.Combine(folderPath, fileName);
+          
+
+                image.SaveAs(path);
+             
+                blog.image = "../Content/Images/" + fileName;
+
                 db.Blogs.Add(blog);
                 db.SaveChanges();
                 return RedirectToAction("Index");

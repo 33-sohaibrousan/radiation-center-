@@ -347,9 +347,31 @@
                     @if (ViewBag.flag)
                     {
                         <div class="col-12">
-                            <input type="submit" id="reason" name="slot" class="btn btn-primary w-100" style="height: 55px;" value="select" />
+                            <input type="submit" id="reason" name="slot" class="btn btn-primary w-100" style="height: 55px;" value="select" onclick="submitForm(event)" />
 
                         </div>
+                        @*<script>
+                            function submitForm(event) {
+                                event.preventDefault();
+
+                                var form = document.getElementById("appointmentForm");
+                                var formData = new FormData(form);
+
+                                fetch(form.action, {
+                                    method: 'POST',
+                                    body: formData
+                                })
+                                    .then(response => {
+                                        // Handle the response from the server
+                                    })
+                                    .catch(error => {
+                                        // Handle any errors that occurred during the AJAX request
+                                    });
+                            }
+                        </script>*@
+
+
+
                     }
                     else
                     {

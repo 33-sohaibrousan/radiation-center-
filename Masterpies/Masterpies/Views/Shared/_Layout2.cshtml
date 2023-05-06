@@ -82,7 +82,7 @@
                                     }
 
 
-                                    </div>
+                                </div>
                             </div>
                         }
                         @if (User.Identity.IsAuthenticated)
@@ -90,7 +90,11 @@
 
 
 
-                            <a href="@Url.Action("profile1", "Users")" class="nav-item nav-link custom-nav-link">Profile</a>
+                            @*<a href="@Url.Action("profile1", "Users")" class="nav-item nav-link custom-nav-link">Profile</a>*@
+                          
+                                <a href="@Url.Action("profile1", "Users", new { id =  })" class="nav-item nav-link custom-nav-link">Profile</a>
+                            
+
 
 
                             if (User.IsInRole("Admin"))
