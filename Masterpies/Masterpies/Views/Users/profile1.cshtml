@@ -169,20 +169,27 @@
                                 <a class="nav-link active" data-bs-toggle="tab" href="#orders">Pending reservations</a>
                             </li>
                             <li>
-                                @*@Html.ActionLink("Edit", "Edit", new { id = item.iduser }) |
-        <a href="@Url.Action("Edit", "ControllerName", new { id = item.iduser })">Edit</a> |*@
-                                @*<a href="@Url.Action("XRay", "Devices", new { id = item.DeviceID })">*@
+                
 
                                     <a class="nav-link" data-bs-toggle="tab" href="#profile">Profile</a>
                             </li>
                             <li>
-                                @*<a class="nav-link" data-bs-toggle="tab" href="#downloads">Downloads</a>*@
                             </li>
                             <li>
                                 <a class="nav-link" data-bs-toggle="tab" href="#mytickets">previous reservations</a>
                             </li>
                             <li>
-                                <a class="nav-link" href="login-register.html">Logout</a>
+                                @using Microsoft.AspNet.Identity
+                                @if (Request.IsAuthenticated)
+                                {
+                                    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+                                    {
+                                        @Html.AntiForgeryToken()
+
+                                            
+                                            <a class=" nav-link" href="javascript:document.getElementById('logoutForm').submit()">Log off</a>
+                                    }
+                                }
                             </li>
                         </ul>
                         <!-- End Nav tabs -->
@@ -204,68 +211,32 @@
                         <!-- profile -->
                         <div id="profile" class="product-order tab-pane fade">
                             @Html.Action("_profileEdit")
+                            @using Microsoft.AspNet.Identity
+                            @if (Request.IsAuthenticated)
+                            {
+                                using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+                                {
+                                    @Html.AntiForgeryToken()
 
+                                    <ul class="nav navbar-nav navbar-right">
+                                        <li>
+
+                                            @Html.ActionLink("Cahnge your password", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage", @class = "nav-item nav-link text-primary " })
+                                        </li>
+                                        <li><a class="nav-item nav-link text-primary" href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
+                                    </ul>
+                                }
+                            }
 
                         </div>
 
-                        <!-- End Downloads -->
-                        <!-- Downloads -->
-                        <!--<div id="downloads" class="product-order tab-pane fade">
-                            <h3>Downloads</h3>
-                            <div class="table-responsive">
-                                <table class="table">
-                                    <thead>
-                                        <tr>
-                                            <th>Product</th>
-                                            <th>Downloads remaining</th>
-                                            <th>Expires</th>
-                                            <th class="text-center">Download</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>Fuel Injector For Skoda Yeti</td>
-                                            <td>July 22, 2021</td>
-                                            <td>never</td>
-                                            <td class="text-center">
-                                                <a class="view" href="#"><u>Download</u></a>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>ACDelco 335 Professional</td>
-                                            <td>Dec 17, 2021</td>
-                                            <td>never</td>
-                                            <td class="text-center">
-                                                <a class="view" href="#"><u>Download</u></a>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>Road Warrior Hub pilot</td>
-                                            <td>Apr 30, 2021</td>
-                                            <td>never</td>
-                                            <td class="text-center">
-                                                <a class="view" href="#"><u>Download</u></a>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>Air Filter</td>
-                                            <td>Mrc 31, 2022</td>
-                                            <td>never</td>
-                                            <td class="text-center">
-                                                <a class="view" href="#"><u>Download</u></a>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>-->
-                        <!-- End Downloads -->
+                      
                         <!-- Account Details -->
                         <div id="mytickets" class="tab-pane fade">
                             <h3>My tickets</h3>
                             <div class="table-responsive" style=" overflow-x: auto; overflow-y: auto; white-space: nowrap; max-height: 600px;">
                                 @Html.Action("_profileapp")
-
+                        
                             </div>
                         </div>
                         <!-- End Account Details -->

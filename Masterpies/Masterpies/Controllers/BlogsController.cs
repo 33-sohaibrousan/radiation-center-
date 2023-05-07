@@ -27,6 +27,24 @@ namespace Masterpies.Controllers
             var blogs = db.Blogs.Include(b => b.AspNetUser);
             return View(blogs.ToList());
         }
+        public ActionResult Blogsingle(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            var blog = db.Blogs.Include(b => b.AspNetUser).SingleOrDefault(b => b.id == id);
+
+            if (blog == null)
+            {
+                return HttpNotFound();
+            }
+
+            return View(new List<Blog> { blog });
+        }
+
+
 
         // GET: Blogs/Details/5
         public ActionResult Details(int? id)
@@ -53,6 +71,7 @@ namespace Masterpies.Controllers
         // POST: Blogs/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        [Authorize(Roles ="Admin")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "id,image,title,text,aspuser")] Blog blog, HttpPostedFileBase image)
@@ -60,7 +79,7 @@ namespace Masterpies.Controllers
             if (ModelState.IsValid)
             {
 
-                string folderPath = Server.MapPath("~/Content/Images");
+                string folderPath = Server.MapPath("~/Content/Images/");
                 if (!Directory.Exists(folderPath))
                 {
                     Directory.CreateDirectory(folderPath);
@@ -102,6 +121,7 @@ namespace Masterpies.Controllers
         // POST: Blogs/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "id,image,title,text,aspuser")] Blog blog)
@@ -132,6 +152,7 @@ namespace Masterpies.Controllers
         }
 
         // POST: Blogs/Delete/5
+        [Authorize(Roles = "Admin")]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)

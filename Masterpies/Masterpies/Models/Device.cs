@@ -11,7 +11,8 @@ namespace Masterpies.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class Device
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -21,13 +22,25 @@ namespace Masterpies.Models
         }
     
         public int DeviceID { get; set; }
+        [Required]
+        [StringLength(100)]
         public string DeviceName { get; set; }
+        [Required]
         public string Description { get; set; }
+        [Required]
         public string Devicebackground { get; set; }
+        [Required]
+
         public string DeviceImg2 { get; set; }
+        [Required]
+
         public string DeviceImg3 { get; set; }
+        [Required]
+
         public string step1 { get; set; }
         public string step2 { get; set; }
+     
+
         public string step3 { get; set; }
         public string Duration { get; set; }
         public Nullable<int> Price { get; set; }

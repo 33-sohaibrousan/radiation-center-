@@ -317,7 +317,7 @@ namespace Masterpies.Controllers
             {
                 db.Entry(appointment).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Requsts", "AdminAppointments");
             }
             ViewBag.aspuserid = new SelectList(db.AspNetUsers, "Id", "Email", appointment.aspuserid);
             ViewBag.DeviceID = new SelectList(db.Devices, "DeviceID", "DeviceName", appointment.DeviceID);
@@ -348,7 +348,7 @@ namespace Masterpies.Controllers
             Appointment appointment = db.Appointments.Find(id);
             db.Appointments.Remove(appointment);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("Requsts", "AdminAppointments");
         }
 
         protected override void Dispose(bool disposing)

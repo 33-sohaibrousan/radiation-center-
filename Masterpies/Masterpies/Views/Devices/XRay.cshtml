@@ -148,16 +148,13 @@
                     <h5 class="d-inline-block text-white text-uppercase border-bottom border-5">Appointment</h5>
                     <h1 class="display-4">Make An Appointment For Your Family</h1>
                 </div>
-                @*<p class="text-white mb-5">Eirmod sed tempor lorem ut dolores. Aliquyam sit sadipscing kasd ipsum. Dolor ea et dolore et at sea ea at dolor, justo ipsum duo rebum sea invidunt voluptua. Eos vero eos vero ea et dolore eirmod et. Dolores diam duo invidunt lorem. Elitr ut dolores magna sit. Sea dolore sanctus sed et. Takimata takimata sanctus sed.</p>*@
-                @*<a class="btn btn-dark rounded-pill py-3 px-5 me-3" href="">Find Doctor</a>
-        <a class="btn btn-outline-dark rounded-pill py-3 px-5" href="">Read More</a>*@
+           
                 <div class="bg-light rounded d-flex align-items-center p-5 mb-4">
                     <div class="d-flex flex-shrink-0 align-items-center justify-content-center rounded-circle bg-white" style="width: 55px; height: 55px;">
                         <i class="fa fa-phone-alt text-primary"></i>
                     </div>
                     <div class="ms-4">
                         <p class="mb-2">Call Us Now</p>
-                        @*<h5 class="mb-0">+962790552430</h5>*@
                         <a href="tel:+962790552430" target="_blank" class="fa fa-phone">Phone</a>
 
                     </div>
@@ -185,7 +182,7 @@
 
                             string[] appointments = ViewBag.slothour.Split(',');
 
-                            foreach (var item in appointments)
+                            @*foreach (var item in appointments)
                             {
                                 <h1>@item</h1>
 
@@ -193,7 +190,7 @@
 
                             <div class=""><p> Date: @ViewBag.date</p></div>
                             <div id="selectedTimeValue"></div>
-                            <p>@ViewBag.price</p>
+                            <p>@ViewBag.price</p>*@
 
                         }
 
@@ -297,12 +294,6 @@
                         string[] segments = url.Split('/'); // split the URL into segments
                         int q = Convert.ToInt16(segments[segments.Length - 1]);
 
-
-
-
-
-
-
                     }
 
                     @{
@@ -350,25 +341,7 @@
                             <input type="submit" id="reason" name="slot" class="btn btn-primary w-100" style="height: 55px;" value="select" onclick="submitForm(event)" />
 
                         </div>
-                        @*<script>
-                            function submitForm(event) {
-                                event.preventDefault();
-
-                                var form = document.getElementById("appointmentForm");
-                                var formData = new FormData(form);
-
-                                fetch(form.action, {
-                                    method: 'POST',
-                                    body: formData
-                                })
-                                    .then(response => {
-                                        // Handle the response from the server
-                                    })
-                                    .catch(error => {
-                                        // Handle any errors that occurred during the AJAX request
-                                    });
-                            }
-                        </script>*@
+                     
 
 
 
