@@ -23,8 +23,8 @@ namespace Masterpies.Controllers
             var appointment = db.Appointments.ToList();
 
             var users = db.Users.Include(u => u.AspNetUser);
-            return View(Tuple.Create(users, devices, appointment));
-            //return View(users.ToList());
+            //return View(Tuple.Create(users, devices, appointment));
+            return View(users.ToList());
         }
         public ActionResult profile1()
         {
@@ -65,6 +65,23 @@ namespace Masterpies.Controllers
                                  .OrderByDescending(a => a.AppointmentDate);
             return PartialView(appointments.ToList());
         }
+        //public PartialViewResult _profileEdit(int? id)
+        //{
+        //    var login = User.Identity.GetUserId();
+
+        //    // You can use SingleOrDefault or FirstOrDefault based on your requirements
+        //    var aspuser = db.AspNetUsers.SingleOrDefault(a => a.Id == login);
+
+        //    // Make sure to check for null, in case no user is found
+        //    if (aspuser == null)
+        //    {
+        //        // You can return an empty view or handle the error appropriately
+        //        return PartialView("Error");
+        //    }
+
+        //    return PartialView(aspuser);
+        //}
+
 
         // GET: Users/Details/5
         public ActionResult Details(int? id)
@@ -105,6 +122,39 @@ namespace Masterpies.Controllers
 
             ViewBag.aspuserid = new SelectList(db.AspNetUsers, "Id", "Email", user.aspuserid);
             return View(user);
+        }
+        //public ActionResult _profileEdit(int? id)
+        //{
+        //    if (id == null)
+        //    {
+        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+        //    }
+        //    User user = db.Users.Find(id);
+        //    if (user == null)
+        //    {
+        //        return HttpNotFound();
+        //    }
+        //    ViewBag.aspuserid = new SelectList(db.AspNetUsers, "Id", "Email", user.aspuserid);
+        //    return View(user);
+       // }
+
+        // POST: Users/Edit/5
+        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
+        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        public PartialViewResult _profileEdit(int? id,[Bind(Include = "iduser,userName,Age,Gender,aspuserid")] User user)
+        {
+            if (ModelState.IsValid)
+
+            {
+                User user1 = db.Users.Find(id);
+                db.Entry(user).State = EntityState.Modified;
+                db.SaveChanges();
+                //return RedirectToAction("Index");
+            }
+            ViewBag.aspuserid = new SelectList(db.AspNetUsers, "Id", "Email", user.aspuserid);
+            return PartialView(user);
         }
 
         // GET: Users/Edit/5

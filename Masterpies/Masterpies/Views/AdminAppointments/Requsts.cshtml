@@ -119,11 +119,15 @@
                     @Html.DisplayFor(modelItem => item.TimeSlot.TimeSlotID)
                 </td>*@
             <td>
-                @Html.ActionLink("Accept", "accept", "AdminAppointments", new { id = item.AppointmentID }, new { @class = "btn btn-success" })
+                @*@Html.ActionLink("Accept", "accept", "AdminAppointments", new { id = item.AppointmentID }, new { @class = "btn btn-success" })*@
+                @Html.ActionLink("Accept", "accept", "AdminAppointments", new { id = item.AppointmentID }, new { @class = "btn btn-success accept-link" })
+
 
             </td>
             <td>
-                @Html.ActionLink("Reject", "reject", "AdminAppointments", new { id = item.AppointmentID }, new { @class = "btn btn-danger" })
+                @*@Html.ActionLink("Reject", "reject", "AdminAppointments", new { id = item.AppointmentID }, new { @class = "btn btn-danger" })*@
+                @Html.ActionLink("Reject", "reject", "AdminAppointments", new { id = item.AppointmentID }, new { @class = "btn btn-danger reject-link" })
+
 
             </td>
             <td>
@@ -132,6 +136,57 @@
                 @Html.ActionLink("Delete", "Delete", new { id = item.AppointmentID })
             </td>
         </tr>
+
     }
 
 </table>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+    $(document).ready(function () {
+        $(".accept-link").click(function (event) {
+            event.preventDefault();
+
+            var link = $(this);
+
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, accept it!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location.href = link.attr("href");
+                }
+            });
+        });
+    });
+</script>
+
+<script>
+    $(document).ready(function () {
+        $(".reject-link").click(function (event) {
+            event.preventDefault();
+
+            var link = $(this);
+
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#d33',
+                cancelButtonColor: '#3085d6',
+                confirmButtonText: 'Yes, reject it!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location.href = link.attr("href");
+                }
+            });
+        });
+    });
+</script>
+

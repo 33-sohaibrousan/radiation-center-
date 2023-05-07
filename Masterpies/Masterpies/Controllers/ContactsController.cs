@@ -68,7 +68,7 @@ namespace Masterpies.Controllers
 
                     // Set the recipient's email address
 
-                    mail.To.Add("alrousansohaib@gmail.com");
+                    mail.To.Add("sjalrousan17@ams.just.edu.jo");
 
                     // Set the subject of the email
                     mail.Subject = "New message from " + Name + " " + Email + " " + Subject;

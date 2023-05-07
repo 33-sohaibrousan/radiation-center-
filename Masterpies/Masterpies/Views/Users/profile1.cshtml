@@ -30,13 +30,13 @@
 
         .dashboard-list li a.active, .dashboard-list li a:hover {
             color: white;
-            background-color: #2E7D32;
+            background-color: #13C5DD ;
             position: relative;
         }
 
             .dashboard-list li a.active:after {
                 content: '';
-                background-color: #2E7D32;
+                background-color: #13C5DD;
                 width: 30px;
                 height: 61px;
                 position: absolute;
@@ -169,7 +169,11 @@
                                 <a class="nav-link active" data-bs-toggle="tab" href="#orders">Pending reservations</a>
                             </li>
                             <li>
-                                <a class="nav-link" data-bs-toggle="tab" href="#profile">Profile</a>
+                                @*@Html.ActionLink("Edit", "Edit", new { id = item.iduser }) |
+        <a href="@Url.Action("Edit", "ControllerName", new { id = item.iduser })">Edit</a> |*@
+                                @*<a href="@Url.Action("XRay", "Devices", new { id = item.DeviceID })">*@
+
+                                    <a class="nav-link" data-bs-toggle="tab" href="#profile">Profile</a>
                             </li>
                             <li>
                                 @*<a class="nav-link" data-bs-toggle="tab" href="#downloads">Downloads</a>*@
@@ -199,74 +203,9 @@
                         <!-- End Orders -->
                         <!-- profile -->
                         <div id="profile" class="product-order tab-pane fade">
-
-                            @using (Html.BeginForm("Edit", "Users", FormMethod.Post, new { enctype = "multipart/form-data" }))
-                            {
-                                @Html.AntiForgeryToken()
-                                <h3>Profile</h3>
-                                foreach (var item in Model)
-                                {
+                            @Html.Action("_profileEdit")
 
 
-                                    <div class="text-danger"> @Html.ValidationSummary(true, "") </div>
-                                    <input name="iduser" id="iduser" type="hidden" value="@item.iduser">
-                                    @*@Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                                        @Html.HiddenFor(model => model.iduser)*@
-
-                                }
-                                <form method="post" action="#" class="profile-form">
-                                    <div class="row">
-                                        <div class="col-12 col-sm-12 col-md-6 col-lg-6 mb-3">
-                                            <div class="form-group">
-                                                <label for="CustomerFirstName">First Name</label>
-                                                <input id="userName" type="text" name="userName" value="" placeholder="Your Name" class="form-control" required="">
-
-                                            </div>
-                                        </div>
-
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-12 col-sm-12 col-md-6 col-lg-6 mb-3">
-                                            <div class="form-group">
-                                                <label for="CustomerEmail1">Email Address</label>
-                                                <input id="Email" type="email" name="Email" readonly value="@ViewBag.UserEmail" placeholder="@ViewBag.UserEmail" class="form-control" required="">
-                                            </div>
-                                        </div>
-                                        <div class="col-12 col-sm-12 col-md-6 col-lg-6 mb-3">
-                                            <div class="form-group">
-                                                <label for="phone">Phone Number</label>
-
-                                                <input id="phone" type="text" name="PhoneNumber" placeholder="Phone Number" class="form-control" required="">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-12 col-sm-12 col-md-6 col-lg-6 mb-3">
-                                            <div class="form-group">
-                                                <label for="CustomerPassword">New Password</label>
-                                                <input id="CustomerPassword" type="password" name="customer[Password]" placeholder="Password" class="form-control" required="">
-                                            </div>
-                                        </div>
-                                        <div class="col-12 col-sm-12 col-md-6 col-lg-6 mb-3">
-                                            <div class="form-group">
-                                                <label for="CustomerConfirmPassword">Confirm Password</label>
-                                                <input id="CustomerConfirmPassword" type="Password" name="customer[ConfirmPassword]" placeholder="Confirm Password" class="form-control" required="">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row align-items-center justify-content-between">
-                                        <div class="col-12 col-sm-12 col-md-6 col-lg-6 mb-2">
-                                            <div class="customCheckbox form-check clearfix">
-                                                <input id="newsletter" name="newsletter" type="checkbox" class="form-check-input">
-                                                <label for="newsletter" class="mx-2">Sign Up for Newsletter</label>
-                                            </div>
-                                        </div>
-                                        <div class="col-12 col-sm-12 col-md-6 col-lg-6 text-end">
-                                            <input type="submit" class="btn btn-lg btn-primary rounded-pill" value="Update Profile">
-                                        </div>
-                                    </div>
-                                </form>
-                            }
                         </div>
 
                         <!-- End Downloads -->

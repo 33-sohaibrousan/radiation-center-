@@ -190,7 +190,7 @@ namespace Masterpies.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Device device = db.Devices.Find(id);
-            Session["photo"] = device.Devicebackground;
+            //Session["photo"] = device.Devicebackground;
             if (device == null)
             {
                 return HttpNotFound();
@@ -203,12 +203,12 @@ namespace Masterpies.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "DeviceID,DeviceName,Description,Devicebackground,singledeviceid,DeviceImg2,DeviceImg3,step1,step2,step3,Duration,Price")] Device device, HttpPostedFileBase Devicebackground, HttpPostedFileBase DeviceImg2, HttpPostedFileBase DeviceImg3)
+        public ActionResult Edit(int? id,[Bind(Include = "DeviceID,DeviceName,Description,Devicebackground,singledeviceid,DeviceImg2,DeviceImg3,step1,step2,step3,Duration,Price")] Device device, HttpPostedFileBase Devicebackground, HttpPostedFileBase DeviceImg2, HttpPostedFileBase DeviceImg3)
         {
             //device.DeviceImage = Session["img"].ToString();
             if (ModelState.IsValid)
             {
-                device.Devicebackground = Session["photo"].ToString();
+                //device.Devicebackground = Session["photo"].ToString();
 
                 string folderPath = Server.MapPath("~/Content/Images");
                     if (!Directory.Exists(folderPath))
@@ -229,7 +229,8 @@ namespace Masterpies.Controllers
                     device.Devicebackground = "../Content/Images/" + fileName;
                     device.DeviceImg2 = "../Content/Images/" + fileName2;
                     device.DeviceImg3 = "../Content/Images/" + fileName3;
-                    db.Entry(device).State = EntityState.Modified;
+                
+                db.Entry(device).State = EntityState.Modified;
                     db.SaveChanges();
                     return RedirectToAction("Index");
             }
