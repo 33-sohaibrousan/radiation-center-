@@ -86,7 +86,7 @@
                                     <div class="title">
                                         Credit Card Number
                                     </div>
-                                    <input type="text" class="input txt text-validated" />
+                                    <input type="text" class="input txt text-validated" required />
                                 </div>
                             </div>
                             <div class="row">
@@ -94,7 +94,7 @@
                                     <div class="title">
                                         Expiry Date
                                     </div>
-                                    <select class="input ddl">
+                                    <select class="input ddl" required>
                                         <option selected>01</option>
                                         <option>02</option>
                                         <option>03</option>
@@ -108,7 +108,7 @@
                                         <option>11</option>
                                         <option>12</option>
                                     </select>
-                                    <select class="input ddl">
+                                    <select class="input ddl" required>
                                         <option>01</option>
                                         <option>02</option>
                                         <option>03</option>
@@ -124,7 +124,7 @@
                                         <option>13</option>
                                         <option>14</option>
                                         <option>15</option>
-                                        <option selected>16</option>
+                                        <option>16</option>
                                         <option>17</option>
                                         <option>18</option>
                                         <option>19</option>
@@ -147,7 +147,7 @@
                                         CVV Code
                                         <span class="numberCircle">?</span>
                                     </div>
-                                    <input type="text" class="input txt" />
+                                    <input type="text" class="input txt" required/>
                                 </div>
                             </div>
                             <div class="row">
@@ -155,7 +155,7 @@
                                     <div class="title">
                                         Name on Card
                                     </div>
-                                    <input type="text" class="input txt" />
+                                    <input type="text" class="input txt" required/>
                                 </div>
                             </div>
                         </div>
@@ -210,22 +210,10 @@
                         }
                         initPayPalButton();
                     </script>
-                    @*<div class="payment__title">
-                            <i class="icon icon-plane"></i> User Information
-                        </div>
-                        <div class="details__user">
-                            <div class="user__name">
-
-                                <br> 13/03/1980
-                            </div>
-                            <div class="user__address">
-                                Shipping Address: 22 Street, Address
-                                <br>Country
-                            </div>
-                        </div>*@
+                   
 
                 </div>
-                <div id="smart-button-container">
+                @*<div id="smart-button-container">
                     <div style="text-align: center;">
                         <div id="paypal-button-container"></div>
                     </div>
@@ -271,7 +259,7 @@
                         }).render('#paypal-button-container');
                     }
                     initPayPalButton();
-                </script>
+                </script>*@
             </div>
         </div>
     </div>

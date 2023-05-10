@@ -35,7 +35,7 @@
 
 
     <!-- About Start -->
-    <div class="container-fluid py-5">
+    <div class="container-fluid py-5" style="height: 360px;">
         <div class="container">
             <div class="row gx-5">
                 <div class="col-lg-5 mb-5 mb-lg-0" style="min-height: 500px;">
@@ -74,16 +74,16 @@
                                     class="accordion-button collapsed"
                                     data-bs-toggle="collapse"
                                     data-bs-target="#accordionOne"
-                                    aria-expanded="false"
+                                    aria-expanded="true"
                                     aria-controls="accordionOne">
-                                Accordion Item 1
+                               Step 1
                             </button>
                         </h2>
                         <div id="accordionOne"
-                             class="accordion-collapse collapse"
+                             class="accordion-collapse collapse show"
                              aria-labelledby="headingTwo"
                              data-bs-parent="#accordionExample">
-                            <div class="accordion-body">
+                            <div class="accordion-body active">
                                 @item.step1
 
                             </div>
@@ -97,7 +97,7 @@
                                     data-bs-target="#accordionTwo"
                                     aria-expanded="false"
                                     aria-controls="accordionTwo">
-                                Accordion Item 2
+                                step 2
                             </button>
                         </h2>
                         <div id="accordionTwo"
@@ -118,7 +118,7 @@
                                     data-bs-target="#accordionThree"
                                     aria-expanded="false"
                                     aria-controls="accordionThree">
-                                Accordion Item 3
+                                step 3
                             </button>
                         </h2>
                         <div id="accordionThree"
@@ -148,16 +148,13 @@
                     <h5 class="d-inline-block text-white text-uppercase border-bottom border-5">Appointment</h5>
                     <h1 class="display-4">Make An Appointment For Your Family</h1>
                 </div>
-                @*<p class="text-white mb-5">Eirmod sed tempor lorem ut dolores. Aliquyam sit sadipscing kasd ipsum. Dolor ea et dolore et at sea ea at dolor, justo ipsum duo rebum sea invidunt voluptua. Eos vero eos vero ea et dolore eirmod et. Dolores diam duo invidunt lorem. Elitr ut dolores magna sit. Sea dolore sanctus sed et. Takimata takimata sanctus sed.</p>*@
-                @*<a class="btn btn-dark rounded-pill py-3 px-5 me-3" href="">Find Doctor</a>
-        <a class="btn btn-outline-dark rounded-pill py-3 px-5" href="">Read More</a>*@
+           
                 <div class="bg-light rounded d-flex align-items-center p-5 mb-4">
                     <div class="d-flex flex-shrink-0 align-items-center justify-content-center rounded-circle bg-white" style="width: 55px; height: 55px;">
                         <i class="fa fa-phone-alt text-primary"></i>
                     </div>
                     <div class="ms-4">
                         <p class="mb-2">Call Us Now</p>
-                        @*<h5 class="mb-0">+962790552430</h5>*@
                         <a href="tel:+962790552430" target="_blank" class="fa fa-phone">Phone</a>
 
                     </div>
@@ -185,7 +182,7 @@
 
                             string[] appointments = ViewBag.slothour.Split(',');
 
-                            foreach (var item in appointments)
+                            @*foreach (var item in appointments)
                             {
                                 <h1>@item</h1>
 
@@ -193,7 +190,7 @@
 
                             <div class=""><p> Date: @ViewBag.date</p></div>
                             <div id="selectedTimeValue"></div>
-                            <p>@ViewBag.price</p>
+                            <p>@ViewBag.price</p>*@
 
                         }
 
@@ -263,7 +260,7 @@
                             <div class="date" id="date" name="AppointmentDate" data-target-input="nearest">
                                 <input type="date"
                                        @*class="form-control bg-light border-0 datetimepicker-input"*@ name="AppointmentDate"
-                                       placeholder="Date" data-target="#date" style="height: 55px;"
+                                       placeholder="Date" data-target="#date" style="height: 236px; border:none;"
                                        min="" required>
                             </div>
                         </div>
@@ -296,12 +293,6 @@
                         string url = Request.Url.AbsoluteUri; // get the absolute URL of the current request
                         string[] segments = url.Split('/'); // split the URL into segments
                         int q = Convert.ToInt16(segments[segments.Length - 1]);
-
-
-
-
-
-
 
                     }
 
@@ -350,25 +341,7 @@
                             <input type="submit" id="reason" name="slot" class="btn btn-primary w-100" style="height: 55px;" value="select" onclick="submitForm(event)" />
 
                         </div>
-                        @*<script>
-                            function submitForm(event) {
-                                event.preventDefault();
-
-                                var form = document.getElementById("appointmentForm");
-                                var formData = new FormData(form);
-
-                                fetch(form.action, {
-                                    method: 'POST',
-                                    body: formData
-                                })
-                                    .then(response => {
-                                        // Handle the response from the server
-                                    })
-                                    .catch(error => {
-                                        // Handle any errors that occurred during the AJAX request
-                                    });
-                            }
-                        </script>*@
+                     
 
 
 
@@ -404,137 +377,46 @@
             <h1 class="display-4">Radiology centers</h1>
         </div>
         <div class="row g-5">
-            <div class="col-xl-4 col-lg-6">
-                <div class="bg-light rounded overflow-hidden">
-                    <img class="img-fluid w-100" src="~/img/blog-1.jpg" alt="">
-                    <div class="p-4">
-                        <a class="h3 d-block mb-3" href="">Dolor clita vero elitr sea stet dolor justo  diam</a>
-                        <p class="m-0">
-                            Dolor lorem eos dolor duo et eirmod sea. Dolor sit magna
-                            rebum clita rebum dolor stet amet justo
-                        </p>
-                    </div>
-                    <div class="d-flex justify-content-between border-top p-4">
-                        <div class="d-flex align-items-center">
-                            <button class="btn btn-primary py-3 px-5">Go To center</button>
 
-                        </div>
-                        <div class="d-flex align-items-center">
+            @{
+                Masterpies.Models.MasterPieseEntities2 db = new Masterpies.Models.MasterPieseEntities2();
+                Masterpies.Models.Blog blog = new Masterpies.Models.Blog();
+                var blogcard = db.Blogs.ToList();
 
-                        </div>
+                foreach (var item in blogcard)
+                {
+                    <div class="col-xl-4 col-lg-6">
+
+                        <a href="@Url.Action("Blogsingle", "Blogs", new { id = item.id })">
+
+                            <div class="bg-light rounded overflow-hidden">
+                                <img class="img-fluid w-100" src="~/Content/@item.image" alt="" style="height:350px;">
+                                <div class="p-4">
+                                    <a class="h3 d-block mb-3" href="@Url.Action("Blogsingle", "Blogs", new { id = item.id })">@item.title</a>
+                                    @*<p class="m-0">
+                                    Dolor lorem eos dolor duo et eirmod sea. Dolor sit magna
+                                    rebum clita rebum dolor stet amet justo
+                                </p>*@
+                                </div>
+                                @*<div class="d-flex justify-content-between border-top p-4">
+                                <div class="d-flex align-items-center">
+                                    <img class="rounded-circle me-2" src="img/user.jpg" width="25" height="25" alt="">
+                                    <small>John Doe</small>
+                                </div>
+                                <div class="d-flex align-items-center">
+                                    <small class="ms-3"><i class="far fa-eye text-primary me-1"></i>12345</small>
+                                    <small class="ms-3"><i class="far fa-comment text-primary me-1"></i>123</small>
+                                </div>
+                            </div>*@
+                            </div>
+                        </a>
+
+
+
                     </div>
-                </div>
-            </div>
-            <div class="col-xl-4 col-lg-6">
-                <div class="bg-light rounded overflow-hidden">
-                    <img class="img-fluid w-100" src="~/img/blog-2.jpg" alt="">
-                    <div class="p-4">
-                        <a class="h3 d-block mb-3" href="">Dolor clita vero elitr sea stet dolor justo  diam</a>
-                        <p class="m-0">
-                            Dolor lorem eos dolor duo et eirmod sea. Dolor sit magna
-                            rebum clita rebum dolor stet amet justo
-                        </p>
-                    </div>
-                    <div class="d-flex justify-content-between border-top p-4">
-                        <div class="d-flex align-items-center">
-                            <img class="rounded-circle me-2" src="img/user.jpg" width="25" height="25" alt="">
-                            <small>John Doe</small>
-                        </div>
-                        <div class="d-flex align-items-center">
-                            <small class="ms-3"><i class="far fa-eye text-primary me-1"></i>12345</small>
-                            <small class="ms-3"><i class="far fa-comment text-primary me-1"></i>123</small>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xl-4 col-lg-6">
-                <div class="bg-light rounded overflow-hidden">
-                    <img class="img-fluid w-100" src="~/img/blog-3.jpg" alt="">
-                    <div class="p-4">
-                        <a class="h3 d-block mb-3" href="">Dolor clita vero elitr sea stet dolor justo  diam</a>
-                        <p class="m-0">
-                            Dolor lorem eos dolor duo et eirmod sea. Dolor sit magna
-                            rebum clita rebum dolor stet amet justo
-                        </p>
-                    </div>
-                    <div class="d-flex justify-content-between border-top p-4">
-                        <div class="d-flex align-items-center">
-                            <img class="rounded-circle me-2" src="img/user.jpg" width="25" height="25" alt="">
-                            <small>John Doe</small>
-                        </div>
-                        <div class="d-flex align-items-center">
-                            <small class="ms-3"><i class="far fa-eye text-primary me-1"></i>12345</small>
-                            <small class="ms-3"><i class="far fa-comment text-primary me-1"></i>123</small>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xl-4 col-lg-6">
-                <div class="bg-light rounded overflow-hidden">
-                    <img class="img-fluid w-100" src="~/img/blog-2.jpg" alt="">
-                    <div class="p-4">
-                        <a class="h3 d-block mb-3" href="">Dolor clita vero elitr sea stet dolor justo  diam</a>
-                        <p class="m-0">
-                            Dolor lorem eos dolor duo et eirmod sea. Dolor sit magna
-                            rebum clita rebum dolor stet amet justo
-                        </p>
-                    </div>
-                    <div class="d-flex justify-content-between border-top p-4">
-                        <div class="d-flex align-items-center">
-                            <img class="rounded-circle me-2" src="img/user.jpg" width="25" height="25" alt="">
-                            <small>John Doe</small>
-                        </div>
-                        <div class="d-flex align-items-center">
-                            <small class="ms-3"><i class="far fa-eye text-primary me-1"></i>12345</small>
-                            <small class="ms-3"><i class="far fa-comment text-primary me-1"></i>123</small>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xl-4 col-lg-6">
-                <div class="bg-light rounded overflow-hidden">
-                    <img class="img-fluid w-100" src="~/img/blog-3.jpg" alt="">
-                    <div class="p-4">
-                        <a class="h3 d-block mb-3" href="">Dolor clita vero elitr sea stet dolor justo  diam</a>
-                        <p class="m-0">
-                            Dolor lorem eos dolor duo et eirmod sea. Dolor sit magna
-                            rebum clita rebum dolor stet amet justo
-                        </p>
-                    </div>
-                    <div class="d-flex justify-content-between border-top p-4">
-                        <div class="d-flex align-items-center">
-                            <img class="rounded-circle me-2" src="img/user.jpg" width="25" height="25" alt="">
-                            <small>John Doe</small>
-                        </div>
-                        <div class="d-flex align-items-center">
-                            <small class="ms-3"><i class="far fa-eye text-primary me-1"></i>12345</small>
-                            <small class="ms-3"><i class="far fa-comment text-primary me-1"></i>123</small>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xl-4 col-lg-6">
-                <div class="bg-light rounded overflow-hidden">
-                    <img class="img-fluid w-100" src="~/img/blog-1.jpg" alt="">
-                    <div class="p-4">
-                        <a class="h3 d-block mb-3" href="">Dolor clita vero elitr sea stet dolor justo  diam</a>
-                        <p class="m-0">
-                            Dolor lorem eos dolor duo et eirmod sea. Dolor sit magna
-                            rebum clita rebum dolor stet amet justo
-                        </p>
-                    </div>
-                    <div class="d-flex justify-content-between border-top p-4">
-                        <div class="d-flex align-items-center">
-                            <img class="rounded-circle me-2" src="img/user.jpg" width="25" height="25" alt="">
-                            <small>John Doe</small>
-                        </div>
-                        <div class="d-flex align-items-center">
-                            <small class="ms-3"><i class="far fa-eye text-primary me-1"></i>12345</small>
-                            <small class="ms-3"><i class="far fa-comment text-primary me-1"></i>123</small>
-                        </div>
-                    </div>
-                </div>
-            </div>
+                }
+            }
+          
 
             <div class="col-12 text-center">
                 <button class="btn btn-primary py-3 px-5">Load More</button>

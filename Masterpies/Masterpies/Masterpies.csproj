@@ -5109,6 +5109,7 @@
     <Content Include="Views\AspNetUsers\Edit.cshtml" />
     <Content Include="Views\AspNetUsers\Index.cshtml" />
     <Content Include="Views\Users\_profileEdit.cshtml" />
+    <Content Include="Views\Blogs\Blogsingle.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

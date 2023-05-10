@@ -68,13 +68,7 @@
             @Html.DisplayFor(model => model.StartTime)
         </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.EndTime)
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.EndTime)
-        </dd>
 
         <dt>
             @Html.DisplayNameFor(model => model.IsAccepted)
@@ -100,22 +94,54 @@
             @Html.DisplayFor(model => model.Device.DeviceName)
         </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.TimeSlot.TimeSlotID)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.TimeSlot.TimeSlotID)
-        </dd>
 
     </dl>
 
-    @using (Html.BeginForm()) {
+    @using (Html.BeginForm(null, null, FormMethod.Post, new { id = "myForm" }))
+    {
         @Html.AntiForgeryToken()
 
         <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
+            <input type="submit" value="Delete" onclick="preventDefault(event)" class="btn btn-default" /> |
             @Html.ActionLink("Back to List", "Index")
         </div>
+        <script>
+            function preventDefault(event) {
+                event.preventDefault();
+
+                // Get the form element
+                var form = document.getElementById("myForm");
+
+                // Create a FormData object to submit the form data
+                var formData = new FormData(form);
+
+                // Submit the form using an AJAX request
+                fetch(form.action, {
+                    method: 'POST',
+                    body: formData
+                })
+                    .then(response => {
+
+                        // Show the success SweetAlert after the action is complete
+                        Swal.fire({
+                            position: 'top-end',
+                            icon: 'success',
+                            title: 'Your work has been saved',
+                            showConfirmButton: false,
+                            timer: 2000
+                        })
+
+                            .then(function () {
+                                window.location.href = "/AdminAppointments/Requsts";
+
+                                AdminAppointments / Requsts
+
+
+                            })
+
+                    })
+
+            }
+        </script>
     }
-</div>
+    </div>

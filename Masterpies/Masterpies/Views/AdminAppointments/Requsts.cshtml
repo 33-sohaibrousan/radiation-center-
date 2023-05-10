@@ -48,22 +48,14 @@
         <th>
             @Html.DisplayNameFor(model => model.StartTime)
         </th>
-        @*<th>
-                @Html.DisplayNameFor(model => model.EndTime)
-            </th>*@
-        @*<th>
-                @Html.DisplayNameFor(model => model.IsAccepted)
-            </th>*@
+    
         <th>
             @Html.DisplayNameFor(model => model.AspNetUser.Email)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Device.DeviceName)
         </th>
-        @*<th>
-                @Html.DisplayNameFor(model => model.TimeSlot.TimeSlotID)
-            </th>*@
-        <th></th>
+
     </tr>
 
     @foreach (var item in Model)
@@ -103,37 +95,29 @@
             <td>
                 @Html.DisplayFor(modelItem => item.StartTime)
             </td>
-            @*<td>
-                    @Html.DisplayFor(modelItem => item.EndTime)
-                </td>*@
-            @*<td>
-                    @Html.DisplayFor(modelItem => item.IsAccepted)
-                </td>*@
+       
             <td>
                 @Html.DisplayFor(modelItem => item.AspNetUser.Email)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Device.DeviceName)
             </td>
-            @*<td>
-                    @Html.DisplayFor(modelItem => item.TimeSlot.TimeSlotID)
-                </td>*@
+        
             <td>
-                @*@Html.ActionLink("Accept", "accept", "AdminAppointments", new { id = item.AppointmentID }, new { @class = "btn btn-success" })*@
                 @Html.ActionLink("Accept", "accept", "AdminAppointments", new { id = item.AppointmentID }, new { @class = "btn btn-success accept-link" })
 
 
             </td>
             <td>
-                @*@Html.ActionLink("Reject", "reject", "AdminAppointments", new { id = item.AppointmentID }, new { @class = "btn btn-danger" })*@
                 @Html.ActionLink("Reject", "reject", "AdminAppointments", new { id = item.AppointmentID }, new { @class = "btn btn-danger reject-link" })
 
 
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.AppointmentID }) |
+                @Html.ActionLink("Edit", "Edit", new { id = item.AppointmentID ,@class= "btn btn-success" }) |
                 @Html.ActionLink("Details", "Details", new { id = item.AppointmentID }) |
                 @Html.ActionLink("Delete", "Delete", new { id = item.AppointmentID })
+
             </td>
         </tr>
 

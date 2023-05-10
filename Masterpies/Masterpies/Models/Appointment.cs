@@ -11,7 +11,8 @@ namespace Masterpies.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class Appointment
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -21,12 +22,20 @@ namespace Masterpies.Models
         }
     
         public int AppointmentID { get; set; }
+        [Required(ErrorMessage = "First name is required.")]
+        [StringLength(50, ErrorMessage = "First name cannot be longer than 50 characters.")]
         public string FirstName { get; set; }
+        [Required(ErrorMessage = "Last name is required.")]
+        [StringLength(50, ErrorMessage = "Last name cannot be longer than 50 characters.")]
         public string LastName { get; set; }
+        [Range(1, 120, ErrorMessage = "Age must be between 1 and 120.")]
         public Nullable<int> patientAge { get; set; }
         public Nullable<bool> patientgender { get; set; }
+        [StringLength(100, ErrorMessage = "City name cannot be longer than 100 characters.")]
+
         public string city { get; set; }
         public Nullable<int> DeviceID { get; set; }
+        [Required]
         public Nullable<System.DateTime> AppointmentDate { get; set; }
         public string aspuserid { get; set; }
         public string StartTime { get; set; }

@@ -136,26 +136,39 @@ namespace Masterpies.Controllers
         //    }
         //    ViewBag.aspuserid = new SelectList(db.AspNetUsers, "Id", "Email", user.aspuserid);
         //    return View(user);
-       // }
+        // }
 
         // POST: Users/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         //[HttpPost]
         //[ValidateAntiForgeryToken]
-        public PartialViewResult _profileEdit(int? id,[Bind(Include = "iduser,userName,Age,Gender,aspuserid")] User user)
+        public PartialViewResult _profileEdit(int? id, [Bind(Include = "iduser,userName,Age,Gender,aspuserid")] User user)
         {
             if (ModelState.IsValid)
-
             {
-                User user1 = db.Users.Find(id);
-                db.Entry(user).State = EntityState.Modified;
-                db.SaveChanges();
-                //return RedirectToAction("Index");
+                string loggedInUserId = User.Identity.GetUserId();
+
+                // Find the corresponding User object in the database
+                User user1 = db.Users.FirstOrDefault(u => u.aspuserid == loggedInUserId);
+
+                if (user1 != null)
+                {
+                    // Update the properties of the existing user1 entity
+                    user1.userName = user.userName;
+                    user1.Age = user.Age;
+                    user1.Gender = user.Gender;
+
+                    // Save the changes to the database
+                    db.Entry(user1).State = EntityState.Modified;
+                    db.SaveChanges();
+                }
             }
+
             ViewBag.aspuserid = new SelectList(db.AspNetUsers, "Id", "Email", user.aspuserid);
             return PartialView(user);
         }
+
 
         // GET: Users/Edit/5
         public ActionResult Edit(int? id)
